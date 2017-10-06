@@ -1,7 +1,9 @@
-package com.harmoni.harmonikeluarga;
+package com.harmoni.harmonikeluarga.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.harmoni.harmonikeluarga.R;
 
 public class Main extends AppCompatActivity {
 

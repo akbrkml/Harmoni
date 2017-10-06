@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/a" android:checkableBehavior="single">
+        <item android:id="@+id/nav_beranda" android:title="BERANDA UTAMA" />
+        <item android:id="@+id/nav_ahli" android:title="TANYA AHLI" />
+        <item android:id="@+id/nav_event" android:title="INSPIRASI" />
+        <item android:id="@+id/nav_pustaka" android:title="PUSTAKA DIGITAL" />
+    </group>
+    <group android:id="@+id/b" android:checkableBehavior="single">
+        <item android:id="@+id/nav_kirimsaran" android:title="KIRIM SARAN" />
+        <item android:id="@+id/nav_favorit" android:title="KONTEN FAVORIT" />
+        <item android:id="@+id/nav_pengaturan" android:title="PENGATURAN" />
+    </group>
+    <group android:id="@+id/c" android:checkableBehavior="single">
+        <item android:id="@+id/nav_tentang" android:title="TENTANG APLIKASI" />
+        <item android:id="@+id/nav_keluar" android:title="LOGOUT" />
+    </group>
+</menu>
