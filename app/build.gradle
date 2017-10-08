@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.harmoni.harmonikeluarga"
+        applicationId "com.harmoni.harmoni"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

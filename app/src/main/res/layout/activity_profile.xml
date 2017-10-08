@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.harmoni.harmonikeluarga.ui.activity.ProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
-        android:background="@color/new_blue"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -20,18 +20,17 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:statusBarScrim="@color/new_blue">
+            app:statusBarScrim="@color/new_blue"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <FrameLayout
-                app:layout_collapseMode="pin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp">
+                    android:layout_gravity="center_vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img_user"
@@ -39,7 +38,9 @@
                         android:layout_height="100dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginRight="15dp"
-                        android:src="@drawable/logo"/>
+                        android:layout_marginBottom="26dp"
+                        android:src="@drawable/ic_toolbar_profile"
+                        android:layout_centerVertical="true"/>
 
                     <ImageView
                         android:id="@+id/btn_upload_photo"
@@ -49,7 +50,8 @@
                         android:layout_toEndOf="@id/img_user"
                         android:layout_alignBottom="@id/img_user"
                         android:layout_alignTop="@id/img_user"
-                        android:src="@drawable/ic_photo_camera"/>
+                        android:src="@drawable/ic_photo_camera"
+                        android:layout_centerVertical="true"/>
 
                     <TextView
                         android:id="@+id/nameUser"
@@ -60,7 +62,8 @@
                         android:shadowColor="#89000000"
                         android:shadowRadius="8.0"
                         android:textColor="#ffffff"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        android:text="Tuan "/>
 
                 </RelativeLayout>
 
@@ -68,37 +71,14 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             </FrameLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill">
-
-                <ImageView
-                    android:adjustViewBounds="true"
-                    android:layout_above="@+id/xx"
-                    android:layout_centerHorizontal="true"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:rotation="90.0"
-                    android:src="@drawable/convleftarrow"
-                    android:tint="@color/new_light_gray" />
-
-                <ImageView
-                    android:id="@+id/xx"
-                    android:layout_alignParentBottom="true"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:src="@drawable/profile_foot" />
-
-            </RelativeLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_profile" />
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
