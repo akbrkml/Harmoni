@@ -2,8 +2,7 @@ package com.harmoni.harmonikeluarga.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,12 +13,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.EventJournalismFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.MainLibraryFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.SaranFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.HomeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.harmoni.harmonikeluarga.util.DialogUtils.customExitAppDialog;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -129,7 +136,7 @@ public class MainActivity extends AppCompatActivity
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            customExitAppDialog(this, "Keluar Aplikasi ?");
         }
     }
 
@@ -160,18 +167,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        fm = getSupportFragmentManager();
+
         int id = item.getItemId();
 
         if (id == R.id.nav_beranda) {
-            // Handle the camera action
+            fm.beginTransaction().replace(R.id.content_frame, new ContentChildFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_ahli) {
-
+            fm.beginTransaction().replace(R.id.content_frame, new ConsultationFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_event) {
-
+            fm.beginTransaction().replace(R.id.content_frame, new EventJournalismFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_pustaka) {
-
+            fm.beginTransaction().replace(R.id.content_frame, new MainLibraryFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_kirimsaran) {
-
+            fm.beginTransaction().replace(R.id.content_frame, new SaranFragment()).addToBackStack("tag").commit();
         } else if (id == R.id.nav_favorit) {
 
         } else if (id == R.id.nav_pengaturan) {

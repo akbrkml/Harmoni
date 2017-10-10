@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/new_gray"
-    tools:context="com.harmoni.harmonikeluarga.ui.fragment.TopicFragment">
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.profile.TopicFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"

@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/new_blue_light"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:shadowColor="#89000000"
+            android:shadowRadius="8.0"
+            android:text="PILIH CONTENT BERDASARKAN PENDIDIKAN ANAK :"
+            android:textColor="@color/new_white" />
+        ]
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvChild"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <Button
+            android:id="@+id/btn_add_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bt_default"
+            android:drawablePadding="10dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:text="TAMBAHKAN DATA ANAK"
+            android:textColor="@color/new_white"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+</FrameLayout>

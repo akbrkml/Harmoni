@@ -5,14 +5,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.harmoni.harmonikeluarga.R;
-import com.harmoni.harmonikeluarga.ui.fragment.ChildFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.HomeFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.ProfileFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.TopicFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.profile.ChildFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.profile.ProfileFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.profile.TopicFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

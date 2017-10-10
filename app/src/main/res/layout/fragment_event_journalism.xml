@@ -1,0 +1,94 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_pink"
+    android:clickable="true"
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.EventJournalismFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroolView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bgEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#b60e41"
+                    android:padding="15dp"
+                    android:text="EVENT"
+                    android:textColor="@color/new_white" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btMoreEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:layout_margin="10dp"
+                    android:text="semua event"
+                    android:textAllCaps="false"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/bgJournalism"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#b60e41"
+                        android:padding="15dp"
+                        android:text="CITIZEN JOURNALISM"
+                        android:textColor="@color/new_white" />
+
+                    <Button
+                        android:id="@+id/add_journalism"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/bt_default"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="+ Kirim Konten"
+                        android:textColor="@color/new_white"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvJournalism"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btMoreJournalizm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:layout_margin="10dp"
+                    android:text="semua konten"
+                    android:textAllCaps="false"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</FrameLayout>

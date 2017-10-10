@@ -1,4 +1,4 @@
-package com.harmoni.harmonikeluarga.ui.fragment;
+package com.harmoni.harmonikeluarga.ui.fragment.profile;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.harmoni.harmonikeluarga.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopicFragment extends Fragment {
+public class ChildFragment extends Fragment {
 
 
-    public TopicFragment() {
+    public ChildFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class TopicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_topic, container, false);
+        return inflater.inflate(R.layout.fragment_child, container, false);
     }
 
 }

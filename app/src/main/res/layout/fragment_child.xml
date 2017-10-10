@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/new_gray"
     android:clickable="true"
-    tools:context="com.harmoni.harmonikeluarga.ui.fragment.ChildFragment">
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.profile.ChildFragment">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"

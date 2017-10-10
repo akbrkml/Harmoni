@@ -17,4 +17,7 @@
     <color name="new_pink">#f9547f</color>
     <color name="new_purple">#5255aa</color>
     <color name="new_white">#ffffff</color>
+
+    <color name="ok">#4caf50</color>
+    <color name="cancel">#d32f2f</color>
 </resources>

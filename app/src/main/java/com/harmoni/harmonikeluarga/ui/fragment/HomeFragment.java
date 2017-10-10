@@ -3,12 +3,14 @@ package com.harmoni.harmonikeluarga.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.harmoni.harmonikeluarga.R;
-import com.medialablk.easytoast.EasyToast;
+import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -18,6 +20,7 @@ import butterknife.OnClick;
  */
 public class HomeFragment extends Fragment {
 
+    private FragmentManager fm;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -31,27 +34,29 @@ public class HomeFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        fm = getActivity().getSupportFragmentManager();
+
         return view;
     }
 
     @OnClick(R.id.bgHome1)
     public void goToBeranda(){
-        EasyToast.info(getActivity(), "test");
+        fm.beginTransaction().replace(R.id.content_frame, new ContentChildFragment()).addToBackStack("tag").commit();
     }
 
     @OnClick(R.id.bgHome2)
     public void goToAhli(){
-        EasyToast.info(getActivity(), "test");
+        fm.beginTransaction().replace(R.id.content_frame, new ConsultationFragment()).addToBackStack("tag").commit();
     }
 
     @OnClick(R.id.bgHome3)
     public void goToInspirasi(){
-        EasyToast.info(getActivity(), "test");
+        fm.beginTransaction().replace(R.id.content_frame, new EventJournalismFragment()).addToBackStack("tag").commit();
     }
 
     @OnClick(R.id.bgHome4)
     public void goToPustaka(){
-        EasyToast.info(getActivity(), "test");
+        fm.beginTransaction().replace(R.id.content_frame, new MainLibraryFragment()).addToBackStack("tag").commit();
     }
 
 }
