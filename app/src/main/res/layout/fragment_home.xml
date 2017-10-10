@@ -24,7 +24,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/img_beranda" />
+                    android:src="@drawable/img_beranda"
+                    android:contentDescription="menu beranda"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                     android:layout_below="@+id/a"
                     android:layout_marginTop="-5dp"
                     android:background="@drawable/home_foot_beranda"
-                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:gravity="left"
                     android:padding="15dp"
                     android:text="@string/beranda_opsi_1"
                     android:textColor="#ffffff" />
@@ -48,7 +49,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/img_tanyaahli" />
+                    android:src="@drawable/img_tanyaahli"
+                    android:contentDescription="menu ahli"/>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -57,7 +59,7 @@
                     android:layout_below="@+id/b"
                     android:layout_marginTop="-5dp"
                     android:background="@drawable/home_foot_ahli"
-                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:gravity="left"
                     android:padding="15dp"
                     android:text="@string/beranda_opsi_2"
                     android:textColor="#ffffff" />
@@ -73,7 +75,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/img_events" />
+                    android:src="@drawable/img_events"
+                    android:contentDescription="menu event"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -81,7 +84,7 @@
                     android:layout_below="@+id/c"
                     android:layout_marginTop="-5dp"
                     android:background="@drawable/home_foot_events"
-                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:gravity="left"
                     android:padding="15dp"
                     android:text="@string/beranda_opsi_3"
                     android:textColor="#ffffff" />
@@ -97,7 +100,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/img_pustaka" />
+                    android:src="@drawable/img_pustaka"
+                    android:contentDescription="menu pustaka"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -105,7 +109,7 @@
                     android:layout_below="@+id/d"
                     android:layout_marginTop="-5dp"
                     android:background="@drawable/home_foot_pustaka"
-                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:gravity="left"
                     android:padding="15dp"
                     android:text="@string/beranda_opsi_4"
                     android:textColor="#ffffff" />
