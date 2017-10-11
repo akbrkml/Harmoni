@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.ui.base.BaseActivity;
+import com.harmoni.harmonikeluarga.ui.fragment.SettingFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.EventJournalismFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.MainLibraryFragment;
@@ -28,116 +30,61 @@ import butterknife.ButterKnife;
 
 import static com.harmoni.harmonikeluarga.util.DialogUtils.customExitAppDialog;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar)Toolbar mToolbar;
     @BindView(R.id.nav_view)NavigationView mNavigationView;
 
     private ActionBarDrawerToggle mToggle;
-    private FragmentManager fm;
-
-    private boolean mToolBarNavigationListenerIsRegistered = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
 
         initComponents();
+        showHomeFragment();
     }
 
     private void initComponents(){
         setSupportActionBar(mToolbar);
-
-        mToggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mToggle.setDrawerIndicatorEnabled(false);
-        mToggle.setHomeAsUpIndicator(R.drawable.ic_toolbar_nav);
-        mDrawerLayout.setDrawerListener(mToggle);
-        mToggle.syncState();
-        mToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, 0, 0){
             @Override
-            public void onClick(View v) {
-                if (mDrawerLayout.isDrawerVisible(GravityCompat.START)) {
-                    mDrawerLayout.closeDrawer(GravityCompat.START);
-                } else {
-                    mDrawerLayout.openDrawer(GravityCompat.START);
-                }
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                setDrawerIndicatorEnabled(true);
             }
-        });
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+//        mToggle.setHomeAsUpIndicator(R.drawable.ic_toolbar_nav);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
 
         mNavigationView.setNavigationItemSelectedListener(this);
-
-        addFragment();
     }
 
-    /**
-     * To be semantically or contextually correct, maybe change the name
-     * and signature of this function to something like:
-     *
-     * private void showBackButton(boolean show)
-     * Just a suggestion.
-     */
-    private void enableViews(boolean enable) {
-
-        // To keep states of ActionBar and ActionBarDrawerToggle synchronized,
-        // when you enable on one, you disable on the other.
-        // And as you may notice, the order for this operation is disable first, then enable - VERY VERY IMPORTANT.
-        if(enable) {
-            // Remove hamburger
-            mToggle.setDrawerIndicatorEnabled(false);
-            // Show back button
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            // when DrawerToggle is disabled i.e. setDrawerIndicatorEnabled(false), navigation icon
-            // clicks are disabled i.e. the UP button will not work.
-            // We need to add a listener, as in below, so DrawerToggle will forward
-            // click events to this listener.
-            if(!mToolBarNavigationListenerIsRegistered) {
-                mToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Doesn't have to be onBackPressed
-                        onBackPressed();
-                    }
-                });
-
-                mToolBarNavigationListenerIsRegistered = true;
-            }
-
-        } else {
-            // Remove back button
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            // Show hamburger
-            mToggle.setDrawerIndicatorEnabled(true);
-            // Remove the/any drawer toggle listener
-            mToggle.setToolbarNavigationClickListener(null);
-            mToolBarNavigationListenerIsRegistered = false;
-        }
-
-        // So, one may think "Hmm why not simplify to:
-        // .....
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(enable);
-        // mDrawer.setDrawerIndicatorEnabled(!enable);
-        // ......
-        // To re-iterate, the order in which you enable and disable views IS important #dontSimplify.
-    }
-
-    private void addFragment(){
-        fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.content_frame, new HomeFragment()).commit();
+    private void showHomeFragment(){
+        add(HomeFragment.newInstance());
     }
 
     @Override
-    public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            customExitAppDialog(this, "Keluar Aplikasi ?");
-        }
+    protected ActionBarDrawerToggle getDrawerToggle() {
+        return mToggle;
+    }
+
+    @Override
+    protected DrawerLayout getDrawer() {
+        return mDrawerLayout;
     }
 
     @Override
@@ -167,24 +114,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        fm = getSupportFragmentManager();
 
         int id = item.getItemId();
 
         if (id == R.id.nav_beranda) {
-            fm.beginTransaction().replace(R.id.content_frame, new ContentChildFragment()).addToBackStack("tag").commit();
+            add(ContentChildFragment.newInstance());
         } else if (id == R.id.nav_ahli) {
-            fm.beginTransaction().replace(R.id.content_frame, new ConsultationFragment()).addToBackStack("tag").commit();
+            add(ConsultationFragment.newInstance());
         } else if (id == R.id.nav_event) {
-            fm.beginTransaction().replace(R.id.content_frame, new EventJournalismFragment()).addToBackStack("tag").commit();
+            add(EventJournalismFragment.newInstance());
         } else if (id == R.id.nav_pustaka) {
-            fm.beginTransaction().replace(R.id.content_frame, new MainLibraryFragment()).addToBackStack("tag").commit();
+            add(MainLibraryFragment.newInstance());
         } else if (id == R.id.nav_kirimsaran) {
-            fm.beginTransaction().replace(R.id.content_frame, new SaranFragment()).addToBackStack("tag").commit();
+            add(SaranFragment.newInstance());
         } else if (id == R.id.nav_favorit) {
 
         } else if (id == R.id.nav_pengaturan) {
-
+            add(SettingFragment.newInstance());
         } else if (id == R.id.nav_tentang) {
 
         } else if (id == R.id.nav_keluar) {

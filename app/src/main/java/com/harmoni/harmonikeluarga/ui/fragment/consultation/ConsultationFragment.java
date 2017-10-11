@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -16,9 +17,13 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ConsultationFragment extends Fragment {
+public class ConsultationFragment extends BaseFragment {
 
     private FragmentManager fm;
+
+    public static ConsultationFragment newInstance(){
+        return new ConsultationFragment();
+    }
 
     public ConsultationFragment() {
         // Required empty public constructor
@@ -54,4 +59,8 @@ public class ConsultationFragment extends Fragment {
     }
 
 
+    @Override
+    protected String getTitle() {
+        return null;
+    }
 }

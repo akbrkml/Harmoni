@@ -7,8 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.ui.base.BackButtonSupportFragment;
+import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
 
@@ -18,12 +21,21 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment implements BackButtonSupportFragment {
+
+    private String title;
+
+    private boolean consumingBackPress = true;
 
     private FragmentManager fm;
+    private Toast toast;
 
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    public static HomeFragment newInstance(){
+        return new HomeFragment();
     }
 
     @Override
@@ -59,4 +71,23 @@ public class HomeFragment extends Fragment {
         fm.beginTransaction().replace(R.id.content_frame, new MainLibraryFragment()).addToBackStack("tag").commit();
     }
 
+    @Override
+    protected String getTitle() {
+        return title;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (consumingBackPress) {
+            //This is actually a terrible thing to do and totally against the guidelines
+            // Ideally you shouldn't handle the backpress ever, so really think twice about what
+            // you are doing and whether you are getting hacky
+            toast = Toast.makeText(getActivity(), "Press back once more to quit the application", Toast.LENGTH_LONG);
+            toast.show();
+            consumingBackPress = false;
+            return true; //consumed
+        }
+        toast.cancel();
+        return false;
+    }
 }

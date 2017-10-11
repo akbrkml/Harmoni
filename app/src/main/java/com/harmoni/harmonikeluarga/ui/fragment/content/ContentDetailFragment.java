@@ -8,12 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ContentDetailFragment extends Fragment {
+public class ContentDetailFragment extends BaseFragment {
 
+    public static ContentDetailFragment newInstance(){
+        return new ContentDetailFragment();
+    }
 
     public ContentDetailFragment() {
         // Required empty public constructor
@@ -27,4 +31,8 @@ public class ContentDetailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_content_detail, container, false);
     }
 
+    @Override
+    protected String getTitle() {
+        return null;
+    }
 }
