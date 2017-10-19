@@ -1,5 +1,6 @@
 package com.harmoni.harmonikeluarga.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,11 +8,15 @@ import android.widget.ProgressBar;
 
 import com.crashlytics.android.Crashlytics;
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.util.SessionManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.BuildConfig;
 import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
+
+import static com.harmoni.harmonikeluarga.util.Constant.USER_SESSION;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -47,13 +52,24 @@ public class SplashScreenActivity extends AppCompatActivity {
                 mProgressBar.setProgress(progress);
             } catch (Exception e) {
                 e.printStackTrace();
-                Timber.e(e.getMessage());
+                if (BuildConfig.DEBUG)
+                    Timber.e(e.getMessage());
             }
         }
     }
 
     private void startApp() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        final Activity a = this;
+        if (isSessionLogin()) {
+            MainActivity.start(a);
+            SplashScreenActivity.this.finish();
+        } else {
+            LoginActivity.start(a);
+            SplashScreenActivity.this.finish();
+        }
+    }
+
+    boolean isSessionLogin() {
+        return SessionManager.getUser(this, USER_SESSION) != null;
     }
 }

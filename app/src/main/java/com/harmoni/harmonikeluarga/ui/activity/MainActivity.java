@@ -1,19 +1,16 @@
 package com.harmoni.harmonikeluarga.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.ui.base.BaseActivity;
@@ -30,6 +27,7 @@ import butterknife.ButterKnife;
 
 import static com.harmoni.harmonikeluarga.util.DialogUtils.customExitAppDialog;
 
+
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)DrawerLayout mDrawerLayout;
@@ -37,6 +35,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.nav_view)NavigationView mNavigationView;
 
     private ActionBarDrawerToggle mToggle;
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
