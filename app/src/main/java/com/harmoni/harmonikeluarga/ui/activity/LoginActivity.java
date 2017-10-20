@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
@@ -29,13 +28,15 @@ import timber.log.Timber;
 
 import static com.harmoni.harmonikeluarga.util.AlertDialogManager.showAlertDialog;
 import static com.harmoni.harmonikeluarga.util.Constant.USER_SESSION;
+import static com.harmoni.harmonikeluarga.util.DialogUtils.customInfoDialog;
+import static com.harmoni.harmonikeluarga.util.Hashing.md5;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 
-    @BindView(R.id.etEmailLogin)AutoCompleteTextView mTextEmail;
-    @BindView(R.id.etPassLogin)EditText mTextPass;
+    @BindView(R.id.etEmailLogin)EditText mInputEmail;
+    @BindView(R.id.etPassLogin)EditText mInputPass;
 
     private String email, password;
 
@@ -80,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getData(){
-        email = mTextEmail.getText().toString().trim();
-        password = mTextPass.getText().toString().trim();
+        email = mInputEmail.getText().toString().trim();
+        password = mInputPass.getText().toString().trim();
     }
 
     private boolean isValidateForm(){
@@ -90,23 +91,23 @@ public class LoginActivity extends AppCompatActivity {
         getData();
 
         if (TextUtils.isEmpty(email)) {
-            mTextEmail.setError("Masukkan email anda!");
+            customInfoDialog(this, "Email tidak boleh kosong!");
             result = false;
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mTextEmail.setError("Email yang anda masukkan tidak sesuai!");
+            customInfoDialog(this, "Email yang anda masukkan tidak sesuai!");
             result = false;
         } else {
-            mTextEmail.setError(null);
+            mInputEmail.setError(null);
         }
 
         if (TextUtils.isEmpty(password)) {
-            mTextPass.setError("Masukkan password anda!");
+            customInfoDialog(this, "Password tidak boleh kosong!");
             result = false;
         } else if (password.length() < 1){
-            mTextPass.setError("Kata sandi terlalu pendek");
+            customInfoDialog(this, "Kata sandi terlalu pendek");
             result = false;
         } else {
-            mTextPass.setError(null);
+            mInputPass.setError(null);
         }
 
         return result;
@@ -116,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
     public void doLogin(){
         getData();
 
-        authenticateUser(email, password);
+        authenticateUser(email, md5(md5(password)));
     }
 
     private void authenticateUser(final String email, String password){

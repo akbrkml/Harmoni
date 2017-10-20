@@ -26,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.harmoni.harmonikeluarga.util.DialogUtils.customExitAppDialog;
+import static com.harmoni.harmonikeluarga.util.DialogUtils.customLogoutAppDialog;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -137,7 +138,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_tentang) {
 
         } else if (id == R.id.nav_keluar) {
-
+            customLogoutAppDialog(this, "Logout dari aplikasi?");
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
