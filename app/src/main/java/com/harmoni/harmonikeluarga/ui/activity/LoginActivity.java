@@ -120,6 +120,12 @@ public class LoginActivity extends AppCompatActivity {
         authenticateUser(email, md5(md5(password)));
     }
 
+    @OnClick(R.id.btRegister)
+    public void doRegister(){
+        RegisterActivity.start(this);
+        finish();
+    }
+
     private void authenticateUser(final String email, String password){
 
         if (!isValidateForm()){
@@ -137,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null){
                     if (user.isStatus()){
                         onSuccessLogin(LoginActivity.this, USER_SESSION, user);
+                        SessionManager.save("email", email);
                         MainActivity.start(LoginActivity.this);
                         LoginActivity.this.finish();
                         EasyToast.info(getApplicationContext(), "Welcome " + user.getDataUser().getCustomerName());

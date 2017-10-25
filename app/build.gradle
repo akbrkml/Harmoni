@@ -75,6 +75,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'it.sephiroth.android.library.bottomnavigation:bottom-navigation:2.0.1-rc1'
     compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
+    compile 'com.jaredrummler:android-device-names:1.1.5'
+    compile 'com.mobsandgeeks:android-saripaar:1.0.3'
     compile 'com.android.support:support-vector-drawable:26.+'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
