@@ -62,7 +62,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildHolder>
     public void onBindViewHolder(ChildAdapter.ChildHolder holder, int position) {
         DataChildItem item = mDataChildItems.get(position);
 
-        holder.mTvNama.setText(item.getCcName());
+        holder.mTvName.setText(item.getCcName());
         holder.mTvAge.setText(item.getCcAge());
         holder.mTvNumber.setText(item.getCcNumber());
         holder.mTvDegree.setText(item.getDegreeName());
@@ -81,7 +81,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildHolder>
 
     public class ChildHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.name)TextView mTvNama;
+        @BindView(R.id.name)TextView mTvName;
         @BindView(R.id.age)TextView mTvAge;
         @BindView(R.id.number)TextView mTvNumber;
         @BindView(R.id.degree)TextView mTvDegree;
