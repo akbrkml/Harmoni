@@ -4,4 +4,13 @@
         <item>Laki-laki</item>
         <item>Perempuan</item>
     </array>
+    <array name="degree">
+        <item>Paud</item>
+        <item>TK</item>
+        <item>SD</item>
+        <item>SMP</item>
+        <item>SMA/SMK</item>
+        <item>Pendidikan Non Formal</item>
+        <item>Pendidikan Anak Berkebutuhan Khusus</item>
+    </array>
 </resources>

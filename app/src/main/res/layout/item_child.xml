@@ -24,7 +24,6 @@
                 android:layout_height="20dp"
                 android:layout_width="20dp"
                 android:padding="5dp"
-                android:src="@drawable/ic_female"
                 android:tint="#ffffff" />
 
             <RelativeLayout
@@ -36,7 +35,7 @@
                     android:id="@+id/name"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:layout_toLeftOf="@id/number"
+                    android:layout_toLeftOf="@+id/number"
                     android:layout_width="match_parent"
                     android:text="Chelsea Islan"
                     android:textColor="@color/new_blue"
@@ -51,7 +50,7 @@
                     android:text="17 tahun" />
 
                 <TextView
-                    android:id="@id/number"
+                    android:id="@+id/number"
                     android:layout_alignParentRight="true"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"

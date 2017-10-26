@@ -1,5 +1,6 @@
 package com.harmoni.harmonikeluarga.network.config;
 
+import com.harmoni.harmonikeluarga.model.Child;
 import com.harmoni.harmonikeluarga.model.Topic;
 import com.harmoni.harmonikeluarga.model.User;
 
@@ -52,6 +53,13 @@ public interface APIInterfaces {
     );
 
     @FormUrlEncoded
+    @POST("APIuser.php")
+    Call<Child> getChilds(
+            @Field("act") String act,
+            @Field("customerId") String customerId
+    );
+
+    @FormUrlEncoded
     @POST("APIcontent.php")
     Call<Topic> addTopics(
             @Field("act") String act,
@@ -61,7 +69,7 @@ public interface APIInterfaces {
 
     @FormUrlEncoded
     @POST("APIuser.php")
-    Call<Topic> addChilds(
+    Call<Child> addChilds(
             @Field("act") String act,
             @Field("degreeId") String degreeId,
             @Field("childId") String childId,

@@ -43,8 +43,6 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicHolder>
         return mDataTopicItems;
     }
 
-
-
     @Override
     public TopicAdapter.TopicHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())

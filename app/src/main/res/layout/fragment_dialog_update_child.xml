@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.harmoni.harmonikeluarga.ui.fragment.DialogUpdateChildFragment">
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.profile.DialogUpdateChildFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:orientation="horizontal">
 
                 <FrameLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginRight="15dp"
@@ -47,11 +47,12 @@
                     <Spinner
                         android:id="@+id/sp_gender"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:entries="@array/gender"/>
                 </FrameLayout>
 
                 <FrameLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_weight="0.5"
@@ -65,7 +66,8 @@
                     <Spinner
                         android:id="@+id/sp_degree"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:entries="@array/degree"/>
                 </FrameLayout>
             </LinearLayout>
 

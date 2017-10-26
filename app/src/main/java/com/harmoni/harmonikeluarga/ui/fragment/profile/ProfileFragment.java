@@ -39,7 +39,7 @@ public class ProfileFragment extends BaseFragment {
     @BindView(R.id.kota)EditText mInputCity;
     @BindView(R.id.swipeRefresh)SwipeRefreshLayout mRefreshLayout;
 
-    private String email;
+    private String name, email, phone, address, province, city;
     public static String customerId;
 
     public static ProfileFragment newInstance(){
@@ -50,11 +50,43 @@ public class ProfileFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    @OnClick(R.id.btn_simpan)
-    public void doSave(){
-
+    private void getData(){
+        name = mInputName.getText().toString();
+        email = mInputEmail.getText().toString();
+        phone = mInputPhone.getText().toString();
+        address = mInputAddress.getText().toString();
+        province = mInputProvince.getText().toString();
+        city = mInputCity.getText().toString();
     }
 
+    @OnClick(R.id.btn_simpan)
+    public void doSave(){
+        getData();
+
+        updateProfile();
+    }
+
+    private void updateProfile(){
+        APIService apiService = new APIService();
+        apiService.updateProfile("update_profile", address, email, name,
+                province, phone, customerId, city, new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        User user = (User) response.body();
+                        if (user != null){
+                            if (user.isStatus()){
+                                EasyToast.success(getActivity(), "Data profile telah diupdate");
+                                getDataProfile();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+                        EasyToast.error(getActivity(), "Koneksi error");
+                    }
+                });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

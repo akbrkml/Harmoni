@@ -44,4 +44,20 @@ public class APIService {
     public void getTopic(String act, String customerId, Callback callback){
         apiInterface.getTopics(act, customerId).enqueue(callback);
     }
+
+    public void getChild(String act, String customerId, Callback callback){
+        apiInterface.getChilds(act, customerId).enqueue(callback);
+    }
+
+    public void updateProfile(String act,
+                              String address,
+                              String email,
+                              String name,
+                              String province,
+                              String msisdn,
+                              String customerId,
+                              String city,
+                              Callback callback){
+        apiInterface.updateProfile(act, address, email, name, province, msisdn, customerId, city).enqueue(callback);
+    }
 }
