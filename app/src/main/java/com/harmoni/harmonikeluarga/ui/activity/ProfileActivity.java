@@ -8,14 +8,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.model.User;
 import com.harmoni.harmonikeluarga.ui.fragment.profile.ChildFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.profile.ProfileFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.profile.TopicFragment;
+import com.harmoni.harmonikeluarga.util.SessionManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.harmoni.harmonikeluarga.util.Constant.USER_SESSION;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -35,6 +39,15 @@ public class ProfileActivity extends AppCompatActivity {
         initToolbar();
 
         addFragment();
+
+        getSession();
+    }
+
+    private void getSession(){
+        User user = SessionManager.getUser(this, USER_SESSION);
+        if (user != null){
+            mTextUser.setText(user.getDataUser().getCustomerName());
+        }
     }
 
     private void addFragment(){

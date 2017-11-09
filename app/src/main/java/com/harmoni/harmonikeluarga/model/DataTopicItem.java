@@ -1,8 +1,12 @@
 package com.harmoni.harmonikeluarga.model;
 
+import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class DataTopicItem{
+
+	@SerializedName("data_content")
+	private List<DataContentItem> dataContent;
 
 	@SerializedName("is_topic")
 	private boolean isTopic;
@@ -79,5 +83,13 @@ public class DataTopicItem{
 
 	public String getTopicStatus(){
 		return topicStatus;
+	}
+
+	public void setDataContent(List<DataContentItem> dataContent){
+		this.dataContent = dataContent;
+	}
+
+	public List<DataContentItem> getDataContent(){
+		return dataContent;
 	}
 }

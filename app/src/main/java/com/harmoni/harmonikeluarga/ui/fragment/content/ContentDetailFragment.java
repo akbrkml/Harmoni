@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 
+import butterknife.ButterKnife;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -28,7 +30,11 @@ public class ContentDetailFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_content_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_content_detail, container, false);
+
+        ButterKnife.bind(this, view);
+
+        return view;
     }
 
     @Override

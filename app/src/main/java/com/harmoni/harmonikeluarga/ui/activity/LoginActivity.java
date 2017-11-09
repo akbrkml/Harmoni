@@ -143,7 +143,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (user != null){
                     if (user.isStatus()){
                         onSuccessLogin(LoginActivity.this, USER_SESSION, user);
-                        SessionManager.save("email", email);
                         MainActivity.start(LoginActivity.this);
                         LoginActivity.this.finish();
                         EasyToast.info(getApplicationContext(), "Welcome " + user.getDataUser().getCustomerName());

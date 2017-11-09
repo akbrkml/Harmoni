@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.model.DataChildItem;
 import com.harmoni.harmonikeluarga.model.DataTopicItem;
 
 import java.util.ArrayList;
@@ -24,8 +26,14 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicHolder>
 
     private ArrayList<DataTopicItem> mDataTopicItems;
     private Context context;
+    private OnItemClickListener listener;
 
-    public TopicAdapter(Context context) {
+    public interface OnItemClickListener {
+        void onItemClick(DataTopicItem item);
+    }
+
+    public TopicAdapter(Context context, OnItemClickListener listener) {
+        this.listener = listener;
         this.mDataTopicItems = new ArrayList<>();
         this.context = context;
     }
@@ -56,6 +64,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicHolder>
         DataTopicItem item = mDataTopicItems.get(position);
 
         holder.mTextView.setText(item.getTopicName());
+
+        if (item.isIsTopic()){
+            holder.mTextView.setBackgroundResource(R.color.new_dark_purple);
+        }
     }
 
     @Override
@@ -63,13 +75,22 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicHolder>
         return mDataTopicItems != null ? mDataTopicItems.size():0;
     }
 
-    public class TopicHolder extends RecyclerView.ViewHolder {
+    public class TopicHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.text)TextView mTextView;
+        @BindView(R.id.bg)RelativeLayout layout;
 
         public TopicHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            DataTopicItem item = mDataTopicItems.get(adapterPosition);
+            listener.onItemClick(item);
         }
     }
 }

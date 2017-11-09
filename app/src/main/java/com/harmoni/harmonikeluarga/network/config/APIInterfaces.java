@@ -1,6 +1,12 @@
 package com.harmoni.harmonikeluarga.network.config;
 
 import com.harmoni.harmonikeluarga.model.Child;
+import com.harmoni.harmonikeluarga.model.Consultation;
+import com.harmoni.harmonikeluarga.model.Content;
+import com.harmoni.harmonikeluarga.model.ContentChild;
+import com.harmoni.harmonikeluarga.model.DataContentItem;
+import com.harmoni.harmonikeluarga.model.DataTopicItem;
+import com.harmoni.harmonikeluarga.model.EventJounalism;
 import com.harmoni.harmonikeluarga.model.Topic;
 import com.harmoni.harmonikeluarga.model.User;
 
@@ -61,6 +67,46 @@ public interface APIInterfaces {
 
     @FormUrlEncoded
     @POST("APIcontent.php")
+    Call<ContentChild> getListByDegree(
+            @Field("act") String act,
+            @Field("degreeId") String degreeId,
+            @Field("customerId") String customerId
+    );
+
+    @FormUrlEncoded
+    @POST("APIconsultation.php")
+    Call<Consultation> getListConsultation(
+            @Field("act") String act,
+            @Field("customerId") String customerId,
+            @Field("page") String page
+    );
+
+    @FormUrlEncoded
+    @POST("APIconsultation.php")
+    Call<Consultation> addConsultation(
+            @Field("act") String act,
+            @Field("customerId") String customerId,
+            @Field("childId") String childId,
+            @Field("consultTitle") String consultTitle,
+            @Field("consultQuestion") String consultQuestion
+    );
+
+    @FormUrlEncoded
+    @POST("APIcontent.php")
+    Call<EventJounalism> getListEventJournalism(
+            @Field("act") String act
+    );
+
+
+    @FormUrlEncoded
+    @POST("APIuser.php")
+    Call<Child> deleteChild(
+            @Field("act") String act,
+            @Field("childId") String childId
+    );
+
+    @FormUrlEncoded
+    @POST("APIcontent.php")
     Call<Topic> addTopics(
             @Field("act") String act,
             @Field("customerId") String customerId,
@@ -92,4 +138,6 @@ public interface APIInterfaces {
             @Field("customerId") String customerId,
             @Field("city") String city
     );
+
+
 }

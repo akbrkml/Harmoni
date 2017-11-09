@@ -24,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.harmoni.harmonikeluarga.util.Constant.USER_SESSION;
+import static com.harmoni.harmonikeluarga.util.DialogUtils.customInfoDialog;
 
 
 /**
@@ -39,8 +40,7 @@ public class ProfileFragment extends BaseFragment {
     @BindView(R.id.kota)EditText mInputCity;
     @BindView(R.id.swipeRefresh)SwipeRefreshLayout mRefreshLayout;
 
-    private String name, email, phone, address, province, city;
-    public static String customerId;
+    private String name, email, phone, address, province, city, customerId;
 
     public static ProfileFragment newInstance(){
         return new ProfileFragment();
@@ -75,7 +75,7 @@ public class ProfileFragment extends BaseFragment {
                         User user = (User) response.body();
                         if (user != null){
                             if (user.isStatus()){
-                                EasyToast.success(getActivity(), "Data profile telah diupdate");
+                                customInfoDialog(getActivity(), "Data profil anda berhasil diperbarui.");
                                 getDataProfile();
                             }
                         }
@@ -111,9 +111,10 @@ public class ProfileFragment extends BaseFragment {
     }
 
     private void getSession(){
-        String emailSession = SessionManager.getString(getActivity(), "email");
-        if (emailSession != null) {
-            email = emailSession;
+        User user = SessionManager.getUser(getActivity(), USER_SESSION);
+        if (user != null) {
+            email = user.getDataUser().getCustomerEmail();
+            customerId = user.getDataUser().getCustomerId();
         }
     }
 

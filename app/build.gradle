@@ -39,6 +39,7 @@ repositories {
         url 'http://dl.bintray.com/amulyakhare/maven'
     }
     maven { url 'https://maven.fabric.io/public' }
+    google()
 }
 
 dependencies {

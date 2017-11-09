@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mInputPass = (TextView) findViewById(R.id.etPassRegist);
+        mInputPass = findViewById(R.id.etPassRegist);
 
         mInputPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override public void onFinished(DeviceName.DeviceInfo info, Exception error) {
                 manufacturer = info.manufacturer;  // "Samsung"
-                String name = info.marketName;            // "Galaxy S7 Edge"
+                String nama = info.marketName;            // "Galaxy S7 Edge"
                 String model = info.model;                // "SAMSUNG-SM-G935A"
                 String codename = info.codename;          // "hero2lte"
                 deviceName = info.getName();       // "Galaxy S7 Edge"
@@ -178,6 +178,10 @@ public class RegisterActivity extends AppCompatActivity {
                           String email,
                           String province,
                           String phone){
+
+        if (!isValidateForm()){
+            return;
+        }
 
         apiService = new APIService();
         apiService.doRegister(act, min, pass,

@@ -64,7 +64,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ChildHolder>
 
         holder.mTvName.setText(item.getCcName());
         holder.mTvAge.setText(item.getCcAge());
-        holder.mTvNumber.setText(item.getCcNumber());
+        holder.mTvNumber.setText("Anak ke " + item.getCcNumber());
         holder.mTvDegree.setText(item.getDegreeName());
 
         if (item.getCcGender().equals("Laki-laki")){

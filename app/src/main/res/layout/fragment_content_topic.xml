@@ -32,5 +32,4 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-
 </FrameLayout>

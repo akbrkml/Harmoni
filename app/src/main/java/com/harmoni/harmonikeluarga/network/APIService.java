@@ -60,4 +60,29 @@ public class APIService {
                               Callback callback){
         apiInterface.updateProfile(act, address, email, name, province, msisdn, customerId, city).enqueue(callback);
     }
+
+    public void addTopic(String act, String customerId, String topicId, Callback callback){
+        apiInterface.addTopics(act, customerId, topicId).enqueue(callback);
+    }
+
+    public void deleteChild(String act, String childId, Callback callback){
+        apiInterface.deleteChild(act, childId).enqueue(callback);
+    }
+
+    public void getListByDegree(String act, String degreeId, String customerId, Callback callback){
+        apiInterface.getListByDegree(act, degreeId, customerId).enqueue(callback);
+    }
+
+    public void getListConsultation(String act, String customerId, String page, Callback callback){
+        apiInterface.getListConsultation(act, customerId, page).enqueue(callback);
+    }
+
+    public void getListEventJournalism(String act, Callback callback){
+        apiInterface.getListEventJournalism(act).enqueue(callback);
+    }
+
+    public void addConsultation(String act, String customerId, String childId, String consultTitle, String consultQuestion, Callback callback){
+        apiInterface.addConsultation(act, customerId, childId, consultTitle, consultQuestion).enqueue(callback);
+    }
+
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <RelativeLayout
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/bg"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="hyperaktif"
+                android:textColor="@color/new_magenta"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_below="@id/title"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:text="Bagaimana Cara menjaga anak yg hyperaktif ?"
+                android:textColor="#313131"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@id/top"
+                android:layout_below="@+id/desc"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Terjawab"
+                    android:textColor="@color/new_green"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:id="@+id/strip"
+                    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:text=" - "
+                    android:textColor="#313131" />
+
+                <TextView
+                    android:gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:id="@+id/date"
+                    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:layout_width="match_parent"
+                    android:text="Minggu, 20 Nov 2016 | 17:00"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

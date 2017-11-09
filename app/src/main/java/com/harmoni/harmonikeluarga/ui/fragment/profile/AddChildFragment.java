@@ -1,19 +1,25 @@
 package com.harmoni.harmonikeluarga.ui.fragment.profile;
 
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.codetroopers.betterpickers.datepicker.DatePickerBuilder;
 import com.codetroopers.betterpickers.datepicker.DatePickerDialogFragment;
 import com.harmoni.harmonikeluarga.R;
+import com.medialablk.easytoast.EasyToast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +29,8 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddChildFragment extends DialogFragment implements DatePickerDialogFragment.DatePickerDialogHandler {
+public class AddChildFragment extends DialogFragment
+        implements DatePickerDialogFragment.DatePickerDialogHandler {
 
     @BindView(R.id.sp_gender)Spinner mSpinnerGender;
     @BindView(R.id.sp_degree)Spinner mSpinnerDegree;
@@ -49,14 +56,34 @@ public class AddChildFragment extends DialogFragment implements DatePickerDialog
     }
 
     private void initDatePicker(){
+        final Calendar cal = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                String dateFormat = "dd-MM-yyyy";
+                SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
+                mTextBirth.setText(sdf.format(cal.getTime()));
+            }
+        };
+
         mTextBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerBuilder dpb = new DatePickerBuilder()
-                        .setFragmentManager(getChildFragmentManager())
-                        .setStyleResId(R.style.BetterPickersDialogFragment)
-                        .setTargetFragment(getTargetFragment());
-                dpb.show();
+                mTextBirth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        DatePickerDialog dpd = new DatePickerDialog(getActivity(), dateSetListener,
+                                cal.get(Calendar.YEAR),
+                                cal.get(Calendar.MONTH),
+                                cal.get(Calendar.DAY_OF_MONTH));
+
+                        if (hasFocus) {
+                            dpd.show();
+                        } else {
+                            dpd.dismiss();
+                        }
+                    }
+                });
             }
         });
     }
@@ -69,5 +96,6 @@ public class AddChildFragment extends DialogFragment implements DatePickerDialog
     @Override
     public void onDialogDateSet(int reference, int year, int monthOfYear, int dayOfMonth) {
         mTextBirth.setText(dayOfMonth + "-" + monthOfYear + "-" + year);
+        EasyToast.info(getActivity(), dayOfMonth + "-" + monthOfYear + "-" + year);
     }
 }

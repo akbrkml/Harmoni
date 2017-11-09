@@ -7,13 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.daimajia.slider.library.SliderLayout;
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MainLibraryFragment extends BaseFragment {
+
+    @BindView(R.id.slider_layout)SliderLayout mSliderLayout;
 
     public static MainLibraryFragment newInstance(){
         return new MainLibraryFragment();
@@ -28,7 +34,11 @@ public class MainLibraryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_library, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_library, container, false);
+
+        ButterKnife.bind(this, view);
+
+        return view;
     }
 
     @Override

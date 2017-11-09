@@ -28,7 +28,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.harmoni.harmonikeluarga.ui.fragment.profile.ProfileFragment.customerId;
+import static com.harmoni.harmonikeluarga.util.Constant.getCustomerId;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +41,6 @@ public class ChildFragment extends BaseFragment {
     @BindView(R.id.swipeRefresh)SwipeRefreshLayout mRefreshLayout;
 
     private ChildAdapter mAdapter;
-    private LinearLayoutManager linearLayoutManager;
     private Child child;
 
     public static ChildFragment newInstance(){
@@ -74,7 +74,7 @@ public class ChildFragment extends BaseFragment {
     }
 
     private void initRecyclerViews(){
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new ChildAdapter(getActivity(), new ChildAdapter.OnItemClickListener() {
@@ -94,7 +94,7 @@ public class ChildFragment extends BaseFragment {
     private void getDataChild(){
         mRefreshLayout.setRefreshing(true);
         APIService apiService = new APIService();
-        apiService.getChild("customer_child", customerId, new Callback() {
+        apiService.getChild("customer_child", getCustomerId(getActivity()), new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mRefreshLayout.setRefreshing(false);
@@ -104,7 +104,7 @@ public class ChildFragment extends BaseFragment {
                         mAdapter.setDataAdapter(child.getDataChild());
                     } else {
                         mTvMessage.setVisibility(View.VISIBLE);
-                        mTvMessage.setText("Anda belum menambahkan data anak");
+                        mTvMessage.setText(R.string.no_child);
                     }
                 }
             }

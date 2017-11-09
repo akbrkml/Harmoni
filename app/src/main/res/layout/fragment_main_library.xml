@@ -39,7 +39,7 @@
 
                 <TextView
                     android:background="#64000000"
-                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:gravity="left|start"
                     android:id="@+id/t"
                     android:layout_alignBottom="@+id/slider_layout"
                     android:layout_height="wrap_content"

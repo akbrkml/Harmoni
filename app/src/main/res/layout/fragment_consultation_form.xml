@@ -65,7 +65,7 @@
             android:id="@+id/bt_simpan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:layout_gravity="center"
             android:layout_margin="25dp"
             android:background="@drawable/bt_default"
             android:text="SIMPAN"
