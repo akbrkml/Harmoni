@@ -99,7 +99,10 @@ public class ContentTopicFragment extends BaseFragment {
                 ContentChild content = (ContentChild) response.body();
 
                 if (content != null) {
-                    mAdapter.setDataAdapter(content.getDataTopic());
+                    int size = content.getDataTopic().size();
+                    for (int i = 0; i < size; i++) {
+                        mAdapter.setDataAdapter(content.getDataTopic().get(i).getDataContent());
+                    }
                 }
             }
 

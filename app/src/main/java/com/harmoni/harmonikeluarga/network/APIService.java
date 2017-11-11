@@ -85,4 +85,8 @@ public class APIService {
         apiInterface.addConsultation(act, customerId, childId, consultTitle, consultQuestion).enqueue(callback);
     }
 
+    public void addSaran(String act, String customerId, String saranText, String saranTitle, Callback callback){
+        apiInterface.addSaran(act, customerId, saranText, saranTitle).enqueue(callback);
+    }
+
 }

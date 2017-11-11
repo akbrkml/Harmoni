@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.harmoni.harmonikeluarga.R;
-import com.harmoni.harmonikeluarga.model.DataChildItem;
 import com.harmoni.harmonikeluarga.model.DataContentItem;
 import com.harmoni.harmonikeluarga.model.DataTopicItem;
 
@@ -26,44 +25,43 @@ import butterknife.ButterKnife;
 
 public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.TopicDegreeHolder> {
 
-    private ArrayList<DataTopicItem> mDataTopicItems;
+    private ArrayList<DataContentItem> mDataContentItems;
     private Context context;
     private OnItemClickListener listener;
 
     public TopicDegreeAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
-        mDataTopicItems = new ArrayList<>();
+        mDataContentItems = new ArrayList<>();
     }
 
     public interface OnItemClickListener {
         void onItemClick(DataTopicItem item);
     }
 
-    public void setDataAdapter(List<DataTopicItem> contentItems) {
+    public void setDataAdapter(List<DataContentItem> contentItems) {
         if (contentItems == null || contentItems.size() == 0)
             return;
-        if (mDataTopicItems != null && mDataTopicItems.size() > 0)
-            this.mDataTopicItems.clear();
-        this.mDataTopicItems.addAll(contentItems);
+        if (mDataContentItems != null && mDataContentItems.size() > 0)
+            this.mDataContentItems.clear();
+        this.mDataContentItems.addAll(contentItems);
         notifyDataSetChanged();
     }
 
-//    public List<DataContentItem> getDataAdapter() {
-//        return mDataTopicItems;
-//    }
+    public List<DataContentItem> getDataAdapter() {
+        return mDataContentItems;
+    }
 
     @Override
     public TopicDegreeAdapter.TopicDegreeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_content, parent, false);
-        TopicDegreeHolder holder = new TopicDegreeHolder(view);
-        return holder;
+        return new TopicDegreeHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TopicDegreeAdapter.TopicDegreeHolder holder, int position) {
-        DataContentItem item = mDataTopicItems.get(position).getDataContent().get(position);
+        DataContentItem item = mDataContentItems.get(position);
 
         Glide.with(context)
                 .load(item.getContentImage())
@@ -75,7 +73,7 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
 
     @Override
     public int getItemCount() {
-        return mDataTopicItems != null ? mDataTopicItems.size() : 0;
+        return mDataContentItems != null ? mDataContentItems.size() : 0;
     }
 
     public class TopicDegreeHolder extends RecyclerView.ViewHolder {

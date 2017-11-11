@@ -92,6 +92,15 @@ public interface APIInterfaces {
     );
 
     @FormUrlEncoded
+    @POST("APIpesan.php")
+    Call<User> addSaran(
+            @Field("act") String act,
+            @Field("customerId") String customerId,
+            @Field("saranText") String saranText,
+            @Field("saranTitle") String saranTitle
+    );
+
+    @FormUrlEncoded
     @POST("APIcontent.php")
     Call<EventJounalism> getListEventJournalism(
             @Field("act") String act
