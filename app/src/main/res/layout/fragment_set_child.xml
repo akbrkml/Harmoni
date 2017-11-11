@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment">
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.consultation.SetChildFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/new_blue_light"
+        android:background="@color/new_magenta"
         android:clickable="true">
 
         <TextView
@@ -17,7 +17,7 @@
             android:padding="15dp"
             android:shadowColor="#89000000"
             android:shadowRadius="8.0"
-            android:text="PILIH CONTENT BERDASARKAN PENDIDIKAN ANAK :"
+            android:text="PILIH UMUR BERDASARKAN PENDIDIKAN ANAK :"
             android:textColor="@color/new_white" />
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -45,6 +45,5 @@
             android:textColor="@color/new_white"
             android:visibility="gone"/>
     </RelativeLayout>
-
 
 </FrameLayout>

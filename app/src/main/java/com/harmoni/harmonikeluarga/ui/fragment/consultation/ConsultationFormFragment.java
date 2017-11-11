@@ -1,8 +1,10 @@
 package com.harmoni.harmonikeluarga.ui.fragment.consultation;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +33,13 @@ import static com.harmoni.harmonikeluarga.util.DialogUtils.customInfoDialog;
  */
 public class ConsultationFormFragment extends BaseFragment {
 
-    @BindView(R.id.umurAnak)TextView mTextUmur;
+    public static TextView mTextUmur;
     @BindView(R.id.jenis)EditText mInputJenisMasalah;
     @BindView(R.id.isi)EditText mInputIsi;
 
     String umur, jenisMasalah, isi;
+    static String childId;
+    private ProgressDialog progressDialog;
 
     public static ConsultationFormFragment newInstance(){
         return new ConsultationFormFragment();
@@ -44,6 +48,17 @@ public class ConsultationFormFragment extends BaseFragment {
     public ConsultationFormFragment() {
         // Required empty public constructor
     }
+
+    private void hideProgress() {
+        if (progressDialog != null){
+            progressDialog.dismiss();
+        }
+    }
+
+    private void showProgress() {
+        progressDialog.show();
+    }
+
 
     private boolean isValidateForm(){
         boolean result = true;
@@ -58,27 +73,44 @@ public class ConsultationFormFragment extends BaseFragment {
         return result;
     }
 
+    @OnClick(R.id.umurAnak)
+    public void selectChild(){
+        SetChildFragment childFragment = new SetChildFragment();
+        childFragment.show(getActivity().getSupportFragmentManager(),null);
+    }
+
+    private void clearText(){
+        mTextUmur.setText("");
+        mInputIsi.setText("");
+        mInputJenisMasalah.setText("");
+    }
+
     private void addConsultation(String customerId, String childId, String consultTitle, final String consultQuestion){
         if (!isValidateForm()){
             return;
         }
 
+        showProgress();
+
         APIService apiService = new APIService();
         apiService.addConsultation("add_consultation", customerId, childId, consultTitle, consultQuestion, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
+                hideProgress();
                 Consultation consultation = (Consultation) response.body();
                 if (consultation != null){
                     if (consultation.isStatus()){
                         customInfoDialog(getActivity(), consultation.getText());
+                        clearText();
+                    } else {
+                        customInfoDialog(getActivity(), consultation.getText());
                     }
                 }
-
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-
+                hideProgress();
             }
         });
     }
@@ -93,7 +125,7 @@ public class ConsultationFormFragment extends BaseFragment {
     public void doSave(){
         getData();
 
-        addConsultation(getCustomerId(getActivity()), umur, jenisMasalah, isi);
+        addConsultation(getCustomerId(getActivity()), childId, jenisMasalah, isi);
     }
 
 
@@ -105,7 +137,15 @@ public class ConsultationFormFragment extends BaseFragment {
 
         ButterKnife.bind(this, view);
 
+        initComponents(view);
+
         return view;
+    }
+
+    private void initComponents(View view){
+        mTextUmur = view.findViewById(R.id.umurAnak);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Harap tunggu...");
     }
 
     @Override
