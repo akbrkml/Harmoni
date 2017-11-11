@@ -50,31 +50,15 @@ public class ConsultationFormFragment extends BaseFragment {
 
         getData();
 
-        if (TextUtils.isEmpty(umur) && TextUtils.isEmpty(jenisMasalah) && TextUtils.isEmpty(isi)) {
+        if (TextUtils.isEmpty(umur) || TextUtils.isEmpty(jenisMasalah) || TextUtils.isEmpty(isi)) {
             customInfoDialog(getActivity(), "Silahkan lengkapi form terlebih dahulu");
             result = false;
-        } else {
-            mTextUmur.setError(null);
-        }
-
-        if (TextUtils.isEmpty(jenisMasalah)) {
-            customInfoDialog(getActivity(), "Silahkan lengkapi form terlebih dahulu");
-            result = false;
-        } else {
-            mInputJenisMasalah.setError(null);
-        }
-
-        if (TextUtils.isEmpty(isi)) {
-            customInfoDialog(getActivity(), "Silahkan lengkapi form terlebih dahulu");
-            result = false;
-        } else {
-            mInputIsi.setError(null);
         }
 
         return result;
     }
 
-    private void addConsultation(String customerId, String childId, String consultTitle, String consultQuestion){
+    private void addConsultation(String customerId, String childId, String consultTitle, final String consultQuestion){
         if (!isValidateForm()){
             return;
         }
@@ -84,6 +68,11 @@ public class ConsultationFormFragment extends BaseFragment {
             @Override
             public void onResponse(Call call, Response response) {
                 Consultation consultation = (Consultation) response.body();
+                if (consultation != null){
+                    if (consultation.isStatus()){
+                        customInfoDialog(getActivity(), consultation.getText());
+                    }
+                }
 
             }
 
