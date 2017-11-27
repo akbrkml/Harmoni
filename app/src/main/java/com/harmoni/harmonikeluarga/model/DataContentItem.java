@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataContentItem{
 
-
 	@SerializedName("content_reject_reason")
 	private String contentRejectReason;
 

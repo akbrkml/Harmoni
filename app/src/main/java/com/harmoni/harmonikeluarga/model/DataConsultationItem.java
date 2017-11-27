@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataConsultationItem{
 
-
 	@SerializedName("consult_answer_text")
 	private String consultAnswerText;
 

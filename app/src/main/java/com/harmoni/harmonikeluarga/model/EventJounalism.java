@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class EventJounalism{
 
-
 	@SerializedName("data_event")
 	private List<DataEventItem> dataEvent;
 

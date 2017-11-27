@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Content{
 
-
 	@SerializedName("text")
 	private String text;
 

@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataEventItem{
 
-
 	@SerializedName("event_open_status")
 	private String eventOpenStatus;
 
