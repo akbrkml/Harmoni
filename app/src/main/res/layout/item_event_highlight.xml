@@ -36,8 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:maxLines="2"
-                    android:text="CONTOH JUDUL
-BUKU"
+                    android:text="CONTOH JUDUL BUKU"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
                     android:textStyle="bold" />

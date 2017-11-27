@@ -4,7 +4,6 @@ package com.harmoni.harmonikeluarga.ui.fragment.consultation;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;

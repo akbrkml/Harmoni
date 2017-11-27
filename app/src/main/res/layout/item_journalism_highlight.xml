@@ -3,41 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/new_pink"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:background="#90000000"
                 android:maxLines="2"
-                android:paddingBottom="15dp"
+                android:padding="15dp"
                 android:text="CONTOH JUDUL BUKU"
                 android:textColor="#ffffff"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="0.55"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/desc"
@@ -52,43 +57,29 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/dateFrom"
+            android:id="@id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="21 September 2016"
+            android:layout_marginTop="10dp"
+            android:text="3 Hari Lalu"
             android:textColor="@color/new_white"
-            android:textSize="12sp"
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/strip"
+            android:id="@id/options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="  -  "
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="⋮"
             android:textColor="@color/new_white"
-            android:textSize="12sp"
-            android:textStyle="italic" />
-
-        <TextView
-            android:id="@+id/dateTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="21 September 2016"
-            android:textColor="@color/new_white"
-            android:textSize="12sp"
-            android:textStyle="italic" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/g"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="15dp"
-        android:background="#ffffff" />
+            android:textStyle="bold" />
+    </RelativeLayout>
 </LinearLayout>
