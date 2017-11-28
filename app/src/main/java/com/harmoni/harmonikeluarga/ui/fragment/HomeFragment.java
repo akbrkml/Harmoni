@@ -32,6 +32,7 @@ public class HomeFragment extends BaseFragment implements BackButtonSupportFragm
 
     public HomeFragment() {
         // Required empty public constructor
+        // split
     }
 
     public static HomeFragment newInstance(){

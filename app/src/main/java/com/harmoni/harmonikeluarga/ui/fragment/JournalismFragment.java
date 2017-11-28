@@ -45,6 +45,7 @@ public class JournalismFragment extends BaseFragment {
 
     public JournalismFragment() {
         // Required empty public constructor
+        // add journalism
     }
 
 

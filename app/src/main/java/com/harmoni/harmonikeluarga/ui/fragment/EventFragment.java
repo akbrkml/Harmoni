@@ -43,6 +43,7 @@ public class EventFragment extends BaseFragment {
 
     public EventFragment() {
         // Required empty public constructor
+        // add event
     }
 
 
