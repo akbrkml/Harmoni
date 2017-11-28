@@ -62,13 +62,18 @@ public class HomeFragment extends BaseFragment implements BackButtonSupportFragm
     }
 
     @OnClick(R.id.bgHome3)
-    public void goToInspirasi(){
-        fm.beginTransaction().replace(R.id.content_frame, new EventJournalismFragment()).addToBackStack("tag").commit();
+    public void goToEvent(){
+        fm.beginTransaction().replace(R.id.content_frame, new EventFragment()).addToBackStack("tag").commit();
     }
 
     @OnClick(R.id.bgHome4)
     public void goToPustaka(){
         fm.beginTransaction().replace(R.id.content_frame, new MainLibraryFragment()).addToBackStack("tag").commit();
+    }
+
+    @OnClick(R.id.bgHome5)
+    public void goToJournalism(){
+        fm.beginTransaction().replace(R.id.content_frame, new JournalismFragment()).addToBackStack("tag").commit();
     }
 
     @Override

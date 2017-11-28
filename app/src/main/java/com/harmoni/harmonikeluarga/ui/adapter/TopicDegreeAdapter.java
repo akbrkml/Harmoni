@@ -2,6 +2,7 @@ package com.harmoni.harmonikeluarga.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,7 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
                 .load(item.getContentImage())
                 .into(holder.mImageContent);
         holder.mTitleContent.setText(item.getContentTitle());
-        holder.mTextDesc.setText(item.getContentDesc());
+        holder.mTextDesc.setText(Html.fromHtml(item.getContentDesc()));
         holder.mTextDate.setText(item.getContentCreateDate());
     }
 

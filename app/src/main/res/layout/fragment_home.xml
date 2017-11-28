@@ -91,6 +91,32 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/bgHome5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_events"
+                    android:contentDescription="menu event"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/e"
+                    android:layout_marginTop="-5dp"
+                    android:background="@drawable/home_foot_events"
+                    android:gravity="left"
+                    android:padding="15dp"
+                    android:text="@string/beranda_opsi_5"
+                    android:textColor="#ffffff" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:id="@+id/bgHome4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

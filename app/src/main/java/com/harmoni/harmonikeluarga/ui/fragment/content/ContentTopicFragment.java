@@ -16,10 +16,14 @@ import com.google.gson.Gson;
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.ContentChild;
 import com.harmoni.harmonikeluarga.model.DataChildItem;
+import com.harmoni.harmonikeluarga.model.DataContentItem;
 import com.harmoni.harmonikeluarga.model.DataTopicItem;
 import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.adapter.TopicDegreeAdapter;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +47,7 @@ public class ContentTopicFragment extends BaseFragment {
 
     private TopicDegreeAdapter mAdapter;
     private DataChildItem childItem;
+    private List<DataContentItem> contentItems;
 
     public static ContentTopicFragment newInstance() {
         return new ContentTopicFragment();
@@ -99,6 +104,7 @@ public class ContentTopicFragment extends BaseFragment {
                 ContentChild content = (ContentChild) response.body();
 
                 if (content != null) {
+                    contentItems = new ArrayList<>();
                     int size = content.getDataTopic().size();
                     for (int i = 0; i < size; i++) {
                         mAdapter.setDataAdapter(content.getDataTopic().get(i).getDataContent());

@@ -14,9 +14,10 @@ import android.view.MenuItem;
 
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.ui.base.BaseActivity;
+import com.harmoni.harmonikeluarga.ui.fragment.EventFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.JournalismFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.SettingFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.EventJournalismFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.MainLibraryFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.SaranFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationFragment;
@@ -126,7 +127,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_ahli) {
             add(ConsultationFragment.newInstance());
         } else if (id == R.id.nav_event) {
-            add(EventJournalismFragment.newInstance());
+            add(EventFragment.newInstance());
+        } else if (id == R.id.nav_journalism) {
+            add(JournalismFragment.newInstance());
         } else if (id == R.id.nav_pustaka) {
             add(MainLibraryFragment.newInstance());
         } else if (id == R.id.nav_kirimsaran) {

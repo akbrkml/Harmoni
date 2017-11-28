@@ -29,6 +29,10 @@ public class DataTopicItem{
 	@SerializedName("topic_status")
 	private String topicStatus;
 
+	public DataTopicItem(List<DataContentItem> contentItems){
+		this.dataContent = contentItems;
+	}
+
 	public void setIsTopic(boolean isTopic){
 		this.isTopic = isTopic;
 	}
