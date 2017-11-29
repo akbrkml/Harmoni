@@ -107,7 +107,7 @@ public interface APIInterfaces {
     );
 
     @FormUrlEncoded
-    @POST("APIcontent.php")
+    @POST("APIevent.php")
     Call<EventJounalism> getListEvent(
             @Field("act") String act
     );
