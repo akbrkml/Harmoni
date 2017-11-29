@@ -7,7 +7,6 @@ import android.support.multidex.MultiDexApplication;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by akbar on 06/10/17.

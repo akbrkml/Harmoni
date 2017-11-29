@@ -2,10 +2,7 @@ package com.harmoni.harmonikeluarga.network.config;
 
 import com.harmoni.harmonikeluarga.model.Child;
 import com.harmoni.harmonikeluarga.model.Consultation;
-import com.harmoni.harmonikeluarga.model.Content;
 import com.harmoni.harmonikeluarga.model.ContentChild;
-import com.harmoni.harmonikeluarga.model.DataContentItem;
-import com.harmoni.harmonikeluarga.model.DataTopicItem;
 import com.harmoni.harmonikeluarga.model.EventJounalism;
 import com.harmoni.harmonikeluarga.model.Topic;
 import com.harmoni.harmonikeluarga.model.User;

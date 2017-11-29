@@ -4,8 +4,6 @@ import com.harmoni.harmonikeluarga.network.config.APIClient;
 import com.harmoni.harmonikeluarga.network.config.APIInterfaces;
 
 import retrofit2.Callback;
-import retrofit2.http.Field;
-import retrofit2.http.PUT;
 
 /**
  * Created by akbar on 19/10/17.

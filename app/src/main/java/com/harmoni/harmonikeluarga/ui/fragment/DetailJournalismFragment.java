@@ -45,10 +45,10 @@ public class DetailJournalismFragment extends BaseFragment {
         return view;
     }
 
-    @OnClick(R.id.btPlayVideo)
-    public void playVideo(){
-
-    }
+//    @OnClick(R.id.btPlayVideo)
+//    public void playVideo(){
+//
+//    }
 
     private void getArgument() {
         String dataJournalism = getArguments().getString("data_journalism");
