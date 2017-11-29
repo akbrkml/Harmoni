@@ -93,7 +93,7 @@ public class JournalismFragment extends BaseFragment {
     private void getJournalism(){
         mRefreshLayout.setRefreshing(true);
         APIService apiService = new APIService();
-        apiService.getListEventJournalism("list_event_journalism", new Callback() {
+        apiService.getListJournalism("list_journalism", new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mRefreshLayout.setRefreshing(false);

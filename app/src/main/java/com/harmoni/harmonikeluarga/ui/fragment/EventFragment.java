@@ -85,7 +85,7 @@ public class EventFragment extends BaseFragment {
     private void getEvent(){
         mRefreshLayout.setRefreshing(true);
         APIService apiService = new APIService();
-        apiService.getListEventJournalism("list_event_journalism", new Callback() {
+        apiService.getListEvent("list_event", new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mRefreshLayout.setRefreshing(false);

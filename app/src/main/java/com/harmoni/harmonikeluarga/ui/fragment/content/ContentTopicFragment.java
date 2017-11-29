@@ -3,6 +3,7 @@ package com.harmoni.harmonikeluarga.ui.fragment.content;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +18,12 @@ import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.ContentChild;
 import com.harmoni.harmonikeluarga.model.DataChildItem;
 import com.harmoni.harmonikeluarga.model.DataContentItem;
+import com.harmoni.harmonikeluarga.model.DataJournalismItem;
 import com.harmoni.harmonikeluarga.model.DataTopicItem;
 import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.adapter.TopicDegreeAdapter;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.DetailJournalismFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +75,13 @@ public class ContentTopicFragment extends BaseFragment {
 
         getTopicByDegree(childItem.getDegreeId(), getCustomerId(getActivity()));
 
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getTopicByDegree(childItem.getDegreeId(), getCustomerId(getActivity()));
+            }
+        });
+
         return view;
     }
 
@@ -88,7 +98,14 @@ public class ContentTopicFragment extends BaseFragment {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new TopicDegreeAdapter(getActivity(), new TopicDegreeAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(DataTopicItem item) {
+            public void onItemClick(DataContentItem item) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                ContentDetailFragment newFragment = new ContentDetailFragment();
+                Bundle bundle = new Bundle();
+                String dataContent = new Gson().toJson(item, ContentDetailFragment.class);
+                bundle.putString("data_content", dataContent);
+                newFragment.setArguments(bundle);
+                fm.beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack("tag").commit();
             }
         });
         mRecyclerView.setAdapter(mAdapter);
@@ -107,6 +124,7 @@ public class ContentTopicFragment extends BaseFragment {
                     contentItems = new ArrayList<>();
                     int size = content.getDataTopic().size();
                     for (int i = 0; i < size; i++) {
+//                        contentItems.add(new DataContentItem(content.getDataTopic().get(0).getDataContent()));
                         mAdapter.setDataAdapter(content.getDataTopic().get(i).getDataContent());
                     }
                 }

@@ -77,8 +77,12 @@ public class APIService {
         apiInterface.getListConsultation(act, customerId, page).enqueue(callback);
     }
 
-    public void getListEventJournalism(String act, Callback callback){
-        apiInterface.getListEventJournalism(act).enqueue(callback);
+    public void getListEvent(String act, Callback callback){
+        apiInterface.getListEvent(act).enqueue(callback);
+    }
+
+    public void getListJournalism(String act, Callback callback){
+        apiInterface.getListJournalism(act).enqueue(callback);
     }
 
     public void addConsultation(String act, String customerId, String childId, String consultTitle, String consultQuestion, Callback callback){

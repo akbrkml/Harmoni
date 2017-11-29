@@ -10,11 +10,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.harmoni.harmonikeluarga.R;
-import com.harmoni.harmonikeluarga.model.DataConsultationItem;
 import com.harmoni.harmonikeluarga.model.DataJournalismItem;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 
-import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

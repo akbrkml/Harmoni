@@ -102,7 +102,13 @@ public interface APIInterfaces {
 
     @FormUrlEncoded
     @POST("APIcontent.php")
-    Call<EventJounalism> getListEventJournalism(
+    Call<EventJounalism> getListJournalism(
+            @Field("act") String act
+    );
+
+    @FormUrlEncoded
+    @POST("APIcontent.php")
+    Call<EventJounalism> getListEvent(
             @Field("act") String act
     );
 

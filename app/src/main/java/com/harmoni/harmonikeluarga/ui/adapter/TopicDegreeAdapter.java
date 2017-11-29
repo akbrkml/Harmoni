@@ -37,7 +37,7 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
     }
 
     public interface OnItemClickListener {
-        void onItemClick(DataTopicItem item);
+        void onItemClick(DataContentItem item);
     }
 
     public void setDataAdapter(List<DataContentItem> contentItems) {
@@ -77,7 +77,7 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
         return mDataContentItems != null ? mDataContentItems.size() : 0;
     }
 
-    public class TopicDegreeHolder extends RecyclerView.ViewHolder {
+    public class TopicDegreeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.img)
         ImageView mImageContent;
@@ -93,6 +93,14 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
         public TopicDegreeHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            DataContentItem item = mDataContentItems.get(position);
+            listener.onItemClick(item);
         }
     }
 }
