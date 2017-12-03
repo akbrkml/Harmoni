@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
-    tools:context="com.harmoni.harmonikeluarga.ui.fragment.MainLibraryFragment">
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.library.MainLibraryFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -37,17 +37,6 @@
                     android:layout_height="1dp"
                     android:layout_width="match_parent" />
 
-                <TextView
-                    android:background="#64000000"
-                    android:gravity="left|start"
-                    android:id="@+id/t"
-                    android:layout_alignBottom="@+id/slider_layout"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:padding="15dp"
-                    android:text="BUKU PILIHAN BULAN INI"
-                    android:textColor="#ffffff"
-                    android:textSize="18sp" />
             </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

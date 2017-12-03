@@ -8,6 +8,9 @@ public class EventJounalism{
 	@SerializedName("data_event")
 	private List<DataEventItem> dataEvent;
 
+	@SerializedName("data_participant")
+	private List<DataParticipantItem> dataParticipantItems;
+
 	@SerializedName("text")
 	private String text;
 
@@ -47,5 +50,13 @@ public class EventJounalism{
 
 	public boolean isStatus(){
 		return status;
+	}
+
+	public List<DataParticipantItem> getDataParticipantItems() {
+		return dataParticipantItems;
+	}
+
+	public void setDataParticipantItems(List<DataParticipantItem> dataParticipantItems) {
+		this.dataParticipantItems = dataParticipantItems;
 	}
 }

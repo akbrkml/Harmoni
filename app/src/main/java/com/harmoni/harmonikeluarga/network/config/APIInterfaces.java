@@ -1,5 +1,6 @@
 package com.harmoni.harmonikeluarga.network.config;
 
+import com.harmoni.harmonikeluarga.model.Book;
 import com.harmoni.harmonikeluarga.model.Child;
 import com.harmoni.harmonikeluarga.model.Consultation;
 import com.harmoni.harmonikeluarga.model.ContentChild;
@@ -7,10 +8,14 @@ import com.harmoni.harmonikeluarga.model.EventJounalism;
 import com.harmoni.harmonikeluarga.model.Topic;
 import com.harmoni.harmonikeluarga.model.User;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 /**
  * Created by akbar on 19/10/17.
@@ -79,6 +84,13 @@ public interface APIInterfaces {
     );
 
     @FormUrlEncoded
+    @POST("APIbook.php")
+    Call<Book> getBookCategory(
+            @Field("act") String act,
+            @Field("sectionName") String sectionName
+    );
+
+    @FormUrlEncoded
     @POST("APIconsultation.php")
     Call<Consultation> addConsultation(
             @Field("act") String act,
@@ -107,6 +119,31 @@ public interface APIInterfaces {
     @POST("APIevent.php")
     Call<EventJounalism> getListEvent(
             @Field("act") String act
+    );
+
+    @Streaming
+    @GET
+    Call<ResponseBody> downloadFile(@Url String fileUrl);
+
+    @FormUrlEncoded
+    @POST("APIevent.php")
+    Call<EventJounalism> getListEventParticipant(
+            @Field("act") String act,
+            @Field("eventId") String eventId
+    );
+
+    @FormUrlEncoded
+    @POST("APIevent.php")
+    Call<EventJounalism> getListEventParticipantWinner(
+            @Field("act") String act,
+            @Field("eventId") String eventId
+    );
+
+    @FormUrlEncoded
+    @POST("APIbook.php")
+    Call<Book> getListBookByCat(
+            @Field("act") String act,
+            @Field("catId") String catId
     );
 
 

@@ -3,8 +3,8 @@
     <group android:id="@+id/a" android:checkableBehavior="single">
         <item android:id="@+id/nav_beranda" android:title="BERANDA UTAMA" />
         <item android:id="@+id/nav_ahli" android:title="TANYA AHLI" />
-        <item android:id="@+id/nav_event" android:title="INSPIRASI: EVENT" />
-        <item android:id="@+id/nav_journalism" android:title="INSPIRASI: JOURNALISM" />
+        <item android:id="@+id/nav_event" android:title="EVENT" />
+        <item android:id="@+id/nav_journalism" android:title="CITIZEN JOURNALISM" />
         <item android:id="@+id/nav_pustaka" android:title="PUSTAKA DIGITAL" />
     </group>
     <group android:id="@+id/b" android:checkableBehavior="single">

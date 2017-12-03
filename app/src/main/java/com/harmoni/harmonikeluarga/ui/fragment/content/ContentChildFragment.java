@@ -20,6 +20,7 @@ import com.harmoni.harmonikeluarga.model.DataChildItem;
 import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.adapter.ChildAdapter;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.profile.AddChildFragment;
 import com.medialablk.easytoast.EasyToast;
 
 import butterknife.BindView;
@@ -104,6 +105,13 @@ public class ContentChildFragment extends BaseFragment {
                         mAdapter.setDataAdapter(child.getDataChild());
                     } else {
                         mButton.setVisibility(View.VISIBLE);
+                        mButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AddChildFragment addChildFragment = new AddChildFragment();
+                                addChildFragment.show(getActivity().getSupportFragmentManager(), null);
+                            }
+                        });
                     }
                 }
             }

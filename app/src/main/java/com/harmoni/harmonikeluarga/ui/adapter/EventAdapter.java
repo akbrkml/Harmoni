@@ -3,6 +3,7 @@ package com.harmoni.harmonikeluarga.ui.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -50,7 +51,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
 
     @Override
     public EventHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = View.inflate(mContext, R.layout.item_event, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_event, parent, false);
         return new EventHolder(view);
     }
 
@@ -70,7 +71,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         return mEventItems != null ? mEventItems.size() : 0;
     }
 
-    class EventHolder extends RecyclerView.ViewHolder {
+    class EventHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.img)
         ImageView mImageBackground;
@@ -86,6 +87,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventHolder>
         EventHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            DataEventItem item = mEventItems.get(position);
+            listener.onItemClick(item);
         }
     }
 

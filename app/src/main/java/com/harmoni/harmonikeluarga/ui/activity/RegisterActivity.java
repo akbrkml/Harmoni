@@ -1,5 +1,6 @@
 package com.harmoni.harmonikeluarga.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,8 +20,10 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.harmoni.harmonikeluarga.R;
+import com.harmoni.harmonikeluarga.model.User;
 import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.fragment.AlertSetPassword;
+import com.harmoni.harmonikeluarga.util.SessionManager;
 import com.jaredrummler.android.device.DeviceName;
 import com.medialablk.easytoast.EasyToast;
 import com.mobsandgeeks.saripaar.Rule;
@@ -35,6 +38,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.harmoni.harmonikeluarga.ui.fragment.AlertSetPassword.pass;
+import static com.harmoni.harmonikeluarga.util.Constant.USER_SESSION;
 import static com.harmoni.harmonikeluarga.util.DialogUtils.customInfoDialog;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -47,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private String name, email, password, phone, province, deviceName, manufacturer;
 
-    public String handset;
+    private ProgressDialog progressDialog;
 
     private APIService apiService;
 
@@ -63,6 +67,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         ButterKnife.bind(this);
+
+        initComponents();
 
         mInputPass = findViewById(R.id.etPassRegist);
 
@@ -83,6 +89,21 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    private void initComponents(){
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Sign In");
+    }
+
+    private void hideProgress() {
+        if (progressDialog != null){
+            progressDialog.dismiss();
+        }
+    }
+
+    private void showProgress() {
+        progressDialog.show();
+    }
+
     @OnClick(R.id.btRegister)
     public void doRegister(){
         getData();
@@ -96,13 +117,12 @@ public class RegisterActivity extends AppCompatActivity {
                 String codename = info.codename;          // "hero2lte"
                 deviceName = info.getName();       // "Galaxy S7 Edge"
 
-                EasyToast.info(getApplicationContext(), manufacturer + " " + deviceName);
+//                EasyToast.info(getApplicationContext(), manufacturer + " " + deviceName);
 
                 register("register", "", password, "", manufacturer + " " + deviceName, "", name, email, province, phone);
                 // FYI: We are on the UI thread.
             }
         });
-
     }
 
     private void getData(){
@@ -151,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(phone)) {
             customInfoDialog(this, "Nomor telp tidak boleh kosong!");
             result = false;
-        } else if (password.length() <= 13){
+        } else if (phone.length() < 10 && phone.length() >= 10){
             customInfoDialog(this, "Nomor telp terlalu pendek");
             result = false;
         } else {
@@ -183,18 +203,31 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        showProgress();
+
         apiService = new APIService();
         apiService.doRegister(act, min, pass,
                 city, handset, regId,
                 name, email, province, phone, new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) {
-
+                        hideProgress();
+                        User user = (User) response.body();
+                        if (user != null){
+                            if (user.isStatus()){
+                                onSuccessRegister(RegisterActivity.this, USER_SESSION, user);
+                                MainActivity.start(RegisterActivity.this);
+                                RegisterActivity.this.finish();
+                                EasyToast.info(getApplicationContext(), "Welcome " + user.getDataUser().getCustomerName());
+                            } else {
+                                customInfoDialog(RegisterActivity.this, user.getText());
+                            }
+                        }
                     }
 
                     @Override
                     public void onFailure(Call call, Throwable t) {
-
+                        hideProgress();
                     }
                 });
     }
@@ -248,4 +281,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
         alert.show();
     }
+
+    private void onSuccessRegister(Context context, String key, User user){
+        SessionManager.putUser(context, key, user);
+    }
+
 }

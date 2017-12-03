@@ -1,0 +1,157 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_pink"
+    android:clickable="true"
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.event.AddPostFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <EditText
+                android:id="@id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_etprofile"
+                android:hint="JUDUL POST"
+                android:imeActionId="0"
+                android:imeOptions="actionNone|actionSearch|actionSend|actionNext|actionDone|actionPrevious"
+                android:inputType="text|textCapCharacters|textCapWords|textCapSentences|textAutoCorrect|textAutoComplete|textMultiLine|textImeMultiLine|textNoSuggestions|textUri|textEmailAddress|textEmailSubject|textShortMessage|textLongMessage|textPersonName|textPostalAddress|textPassword|textVisiblePassword|textWebEditText|textFilter|textPhonetic|textWebEmailAddress|textWebPassword|phone|time"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SILAHKAN ISI DESKRIPSI POST ANDA"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_etprofile"
+                android:gravity="top"
+                android:hint="DESKRIPSI POST"
+                android:imeActionId="0"
+                android:lines="7"
+                android:imeOptions="actionNone|actionSearch|actionSend|actionNext|actionDone|actionPrevious"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+            <LinearLayout
+                android:id="@+id/bg_addimage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btAddImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bt_default"
+                    android:drawableRight="@drawable/ic_add"
+                    android:paddingLeft="10dp"
+                    android:text="add image"
+                    android:textColor="@color/new_white" />
+
+                <TextView
+                    android:id="@+id/imageName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_etprofile"
+                    android:hint="IMAGE NAME"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bg_addaudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btAddAudio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bt_default"
+                    android:drawableRight="@drawable/ic_add"
+                    android:paddingLeft="10dp"
+                    android:text="add audio"
+                    android:textColor="@color/new_white" />
+
+                <TextView
+                    android:id="@+id/audioName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_etprofile"
+                    android:hint="AUDIO NAME"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bg_addvideo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btAddVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/bt_default"
+                    android:drawableRight="@drawable/ic_add"
+                    android:paddingLeft="10dp"
+                    android:text="add video"
+                    android:textColor="@color/new_white" />
+
+                <TextView
+                    android:id="@+id/videoName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_etprofile"
+                    android:hint="VIDEO NAME"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bt_kirim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:layout_margin="25dp"
+                android:background="@drawable/bt_default"
+                android:text="KIRIM"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</FrameLayout>

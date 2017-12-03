@@ -4,6 +4,7 @@ import com.harmoni.harmonikeluarga.network.config.APIClient;
 import com.harmoni.harmonikeluarga.network.config.APIInterfaces;
 
 import retrofit2.Callback;
+import retrofit2.http.Field;
 
 /**
  * Created by akbar on 19/10/17.
@@ -79,6 +80,26 @@ public class APIService {
         apiInterface.getListEvent(act).enqueue(callback);
     }
 
+    public void downloadFile(String url, Callback callback){
+        apiInterface.downloadFile(url).enqueue(callback);
+    }
+
+    public void getListEventParticipant(String act, String eventId, Callback callback){
+        apiInterface.getListEventParticipant(act, eventId).enqueue(callback);
+    }
+
+    public void getListEventParticipantWinner(String act, String eventId, Callback callback){
+        apiInterface.getListEventParticipantWinner(act, eventId).enqueue(callback);
+    }
+
+    public void getBookCategory(String act, String sectionName, Callback callback){
+        apiInterface.getBookCategory(act, sectionName).enqueue(callback);
+    }
+
+    public void getBookByCat(String act, String catId, Callback callback){
+        apiInterface.getListBookByCat(act, catId).enqueue(callback);
+    }
+
     public void getListJournalism(String act, Callback callback){
         apiInterface.getListJournalism(act).enqueue(callback);
     }
@@ -91,4 +112,15 @@ public class APIService {
         apiInterface.addSaran(act, customerId, saranText, saranTitle).enqueue(callback);
     }
 
+    public void addChild(String act,
+                         String degreeId,
+                         String childId,
+                         String childGender,
+                         String childBirth,
+                         String childName,
+                         String customerId,
+                         String childNumber,
+                         Callback callback){
+        apiInterface.addChilds(act, degreeId, childId, childGender, childBirth, childName, customerId, childNumber).enqueue(callback);
+    }
 }

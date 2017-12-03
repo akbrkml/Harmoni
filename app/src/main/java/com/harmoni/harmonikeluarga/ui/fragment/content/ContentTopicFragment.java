@@ -18,12 +18,9 @@ import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.ContentChild;
 import com.harmoni.harmonikeluarga.model.DataChildItem;
 import com.harmoni.harmonikeluarga.model.DataContentItem;
-import com.harmoni.harmonikeluarga.model.DataJournalismItem;
-import com.harmoni.harmonikeluarga.model.DataTopicItem;
 import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.adapter.TopicDegreeAdapter;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.DetailJournalismFragment;
 
 import java.util.ArrayList;
 import java.util.List;

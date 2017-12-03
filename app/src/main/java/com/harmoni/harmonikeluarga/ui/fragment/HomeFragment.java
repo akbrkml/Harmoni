@@ -14,6 +14,9 @@ import com.harmoni.harmonikeluarga.ui.base.BackButtonSupportFragment;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.event.EventFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.journalism.JournalismFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.library.MainLibraryFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

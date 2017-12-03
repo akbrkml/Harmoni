@@ -1,4 +1,4 @@
-package com.harmoni.harmonikeluarga.ui.fragment;
+package com.harmoni.harmonikeluarga.ui.fragment.journalism;
 
 
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.daimajia.slider.library.SliderLayout;
 import com.harmoni.harmonikeluarga.R;
-import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,15 +18,14 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainLibraryFragment extends BaseFragment {
+public class AddContentFragment extends Fragment {
 
-    @BindView(R.id.slider_layout)SliderLayout mSliderLayout;
+    @BindView(R.id.title)EditText mInputTitle;
+    @BindView(R.id.desc)EditText mInputDesc;
+    @BindView(R.id.imageName)TextView mImageName;
+    @BindView(R.id.videoName)TextView mVideoName;
 
-    public static MainLibraryFragment newInstance(){
-        return new MainLibraryFragment();
-    }
-
-    public MainLibraryFragment() {
+    public AddContentFragment() {
         // Required empty public constructor
     }
 
@@ -34,15 +34,11 @@ public class MainLibraryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_library, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_content, container, false);
 
         ButterKnife.bind(this, view);
 
         return view;
     }
 
-    @Override
-    protected String getTitle() {
-        return null;
-    }
 }

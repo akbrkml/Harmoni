@@ -14,11 +14,11 @@ import android.view.MenuItem;
 
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.ui.base.BaseActivity;
-import com.harmoni.harmonikeluarga.ui.fragment.EventFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.JournalismFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.event.EventFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.journalism.JournalismFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.SettingFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.content.ContentChildFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.MainLibraryFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.library.MainLibraryFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.SaranFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.HomeFragment;
@@ -26,7 +26,6 @@ import com.harmoni.harmonikeluarga.ui.fragment.HomeFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.harmoni.harmonikeluarga.util.DialogUtils.customExitAppDialog;
 import static com.harmoni.harmonikeluarga.util.DialogUtils.customLogoutAppDialog;
 
 

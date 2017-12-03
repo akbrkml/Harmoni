@@ -13,4 +13,13 @@
         <item>Pendidikan Non Formal</item>
         <item>Pendidikan Anak Berkebutuhan Khusus</item>
     </array>
+    <array name="degree_value">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </array>
 </resources>

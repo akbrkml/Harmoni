@@ -41,10 +41,10 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
     }
 
     public void setDataAdapter(List<DataContentItem> contentItems) {
-        if (contentItems == null || contentItems.size() == 0)
-            return;
-        if (mDataContentItems != null && mDataContentItems.size() > 0)
-            this.mDataContentItems.clear();
+//        if (contentItems == null || contentItems.size() == 0)
+//            return;
+//        if (mDataContentItems != null && mDataContentItems.size() > 0)
+//            this.mDataContentItems.clear();
         this.mDataContentItems.addAll(contentItems);
         notifyDataSetChanged();
     }

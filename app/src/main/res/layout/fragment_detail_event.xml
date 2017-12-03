@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.harmoni.harmonikeluarga.ui.fragment.DetailEventFragment">
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.event.DetailEventFragment">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
             </FrameLayout>
 
             <RelativeLayout
-                android:background="@color/new_pink"
+                android:background="@color/new_white"
                 android:id="@+id/container"
                 android:layout_below="@id/top"
                 android:layout_height="match_parent"
@@ -123,6 +123,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/bt_default"
         android:text="JOIN"
+        android:visibility="gone"
         android:textColor="@color/new_white" />
 </RelativeLayout>
 

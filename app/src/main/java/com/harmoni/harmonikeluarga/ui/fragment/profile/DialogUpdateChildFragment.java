@@ -31,6 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.harmoni.harmonikeluarga.ui.fragment.profile.ChildFragment.getDataChild;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -150,7 +152,8 @@ public class DialogUpdateChildFragment extends DialogFragment
             @Override
             public void onResponse(Call call, Response response) {
                 if (response.isSuccessful()){
-                    EasyToast.success(getActivity(), "Data berhasil dihapus");
+//                    EasyToast.success(getActivity(), "Data berhasil dihapus");
+                    getDataChild();
                 }
             }
 

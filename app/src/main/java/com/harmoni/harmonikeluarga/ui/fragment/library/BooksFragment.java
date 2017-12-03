@@ -1,4 +1,4 @@
-package com.harmoni.harmonikeluarga.ui.fragment;
+package com.harmoni.harmonikeluarga.ui.fragment.library;
 
 
 import android.os.Bundle;
@@ -11,21 +11,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.harmoni.harmonikeluarga.R;
-import com.harmoni.harmonikeluarga.model.DataConsultationItem;
+import com.harmoni.harmonikeluarga.model.Book;
+import com.harmoni.harmonikeluarga.model.DataBookItem;
+import com.harmoni.harmonikeluarga.model.DataCategoryItem;
 import com.harmoni.harmonikeluarga.model.DataJournalismItem;
-import com.harmoni.harmonikeluarga.model.EventJounalism;
 import com.harmoni.harmonikeluarga.network.APIService;
-import com.harmoni.harmonikeluarga.ui.adapter.EventAdapter;
-import com.harmoni.harmonikeluarga.ui.adapter.JournalismAdapter;
+import com.harmoni.harmonikeluarga.ui.adapter.BookCategoryAdapter;
+import com.harmoni.harmonikeluarga.ui.adapter.BookListAdapter;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
-import com.harmoni.harmonikeluarga.ui.fragment.consultation.ConsultationDetailFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,19 +33,16 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class JournalismFragment extends BaseFragment {
+public class BooksFragment extends BaseFragment {
 
-    @BindView(R.id.rvJournalism)RecyclerView mRecyclerViewJournalism;
     @BindView(R.id.swipeRefresh)SwipeRefreshLayout mRefreshLayout;
-    private JournalismAdapter mAdapterJournalism;
+    @BindView(R.id.rvBook)RecyclerView mRecyclerView;
+    @BindView(R.id.noData)TextView mTextMessage;
+    private String catId;
+    private BookListAdapter mAdapter;
 
-    public static JournalismFragment newInstance(){
-        return new JournalismFragment();
-    }
-
-    public JournalismFragment() {
+    public BooksFragment() {
         // Required empty public constructor
-        // add journalism
     }
 
 
@@ -53,18 +50,20 @@ public class JournalismFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_journalism, container, false);
+        View view = inflater.inflate(R.layout.fragment_books, container, false);
 
         ButterKnife.bind(this, view);
 
+        getArgument();
+
         initRecycler();
 
-        getJournalism();
+        getBookByCat();
 
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getJournalism();
+                getBookByCat();
             }
         });
 
@@ -73,33 +72,46 @@ public class JournalismFragment extends BaseFragment {
 
     private void initRecycler(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerViewJournalism.setLayoutManager(linearLayoutManager);
-        mRecyclerViewJournalism.setItemAnimator(new DefaultItemAnimator());
-        mAdapterJournalism = new JournalismAdapter(getActivity(), new JournalismAdapter.OnItemClickListener() {
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new BookListAdapter(getActivity(), new BookListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(DataJournalismItem item) {
+            public void onItemClick(DataBookItem item) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                DetailJournalismFragment newFragment = new DetailJournalismFragment();
+                DetailBookFragment newFragment = new DetailBookFragment();
                 Bundle bundle = new Bundle();
-                String dataJournalism = new Gson().toJson(item, DataJournalismItem.class);
-                bundle.putString("data_journalism", dataJournalism);
+                String dataBook = new Gson().toJson(item, DataBookItem.class);
+                bundle.putString("data_book", dataBook);
                 newFragment.setArguments(bundle);
                 fm.beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack("tag").commit();
             }
         });
-        mRecyclerViewJournalism.setAdapter(mAdapterJournalism);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void getJournalism(){
+    private void getArgument() {
+        String cat_id = getArguments().getString("cat_id");
+        if (cat_id != null) {
+            catId = cat_id;
+        }
+    }
+
+    private void getBookByCat(){
         mRefreshLayout.setRefreshing(true);
         APIService apiService = new APIService();
-        apiService.getListJournalism("list_journalism", new Callback() {
+        apiService.getBookByCat("list_by_cat", catId, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mRefreshLayout.setRefreshing(false);
-                EventJounalism event = (EventJounalism) response.body();
-                if (event.isStatus()){
-                    mAdapterJournalism.setDataAdapter(event.getDataJournalism());
+                Book book = (Book) response.body();
+                if (book != null){
+                    if (book.isStatus()){
+                        mAdapter.setDataAdapter(book.getDataBook());
+                    } else {
+                        mTextMessage.setVisibility(View.VISIBLE);
+                        mTextMessage.setText(book.getText());
+                    }
+
                 }
             }
 
@@ -108,11 +120,6 @@ public class JournalismFragment extends BaseFragment {
                 mRefreshLayout.setRefreshing(false);
             }
         });
-    }
-
-    @OnClick(R.id.add_journalism)
-    public void addJournalism(){
-
     }
 
     @Override

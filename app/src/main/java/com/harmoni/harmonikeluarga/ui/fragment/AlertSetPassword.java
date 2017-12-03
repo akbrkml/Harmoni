@@ -32,12 +32,12 @@ import static com.harmoni.harmonikeluarga.ui.activity.RegisterActivity.mInputPas
 public class AlertSetPassword extends DialogFragment implements Validator.ValidationListener {
 
     @Required(order = 1)
-    @Password(order = 2, message = "Enter a Valid Password")
-    @TextRule(order = 3, minLength = 6, message = "Enter a New Password Correctly")
+    @Password(order = 2, message = "Masukkan password dengan benar!")
+    @TextRule(order = 3, minLength = 6, message = "Password minimal 6 karakter!")
     @BindView(R.id.pSet)EditText mInputPassword;
 
     @Required(order = 4)
-    @ConfirmPassword(order = 5, message = "Repeat a New Password Correctly")
+    @ConfirmPassword(order = 5, message = "Salah mengulangi password!")
     @BindView(R.id.pRe)EditText mInputRePassword;
 
     @BindView(R.id.cbsp)CheckBox mShowPassword;
@@ -102,7 +102,7 @@ public class AlertSetPassword extends DialogFragment implements Validator.Valida
             failedView.requestFocus();
             ((EditText) failedView).setError(message);
         } else {
-            Toast.makeText(getActivity(), "Salah mengulangi password", Toast.LENGTH_SHORT)
+            Toast.makeText(getActivity(), "Salah mengulangi password!", Toast.LENGTH_SHORT)
                     .show();
         }
     }

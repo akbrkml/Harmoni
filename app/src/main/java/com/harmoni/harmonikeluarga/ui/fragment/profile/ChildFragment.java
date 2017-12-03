@@ -37,11 +37,12 @@ import static com.harmoni.harmonikeluarga.util.Constant.getCustomerId;
 public class ChildFragment extends BaseFragment {
 
     @BindView(R.id.rvChild)RecyclerView mRecyclerView;
-    @BindView(R.id.nodata)TextView mTvMessage;
-    @BindView(R.id.swipeRefresh)SwipeRefreshLayout mRefreshLayout;
+    public static TextView mTvMessage;
+    public static SwipeRefreshLayout mRefreshLayout;
 
-    private ChildAdapter mAdapter;
-    private Child child;
+    public static ChildAdapter mAdapter;
+    public static Child child;
+    public static String customerId;
 
     public static ChildFragment newInstance(){
         return new ChildFragment();
@@ -59,7 +60,9 @@ public class ChildFragment extends BaseFragment {
 
         ButterKnife.bind(this, view);
 
-        initRecyclerViews();
+        initRecyclerViews(view);
+
+        customerId = getCustomerId(getActivity());
 
         getDataChild();
 
@@ -73,7 +76,10 @@ public class ChildFragment extends BaseFragment {
         return view;
     }
 
-    private void initRecyclerViews(){
+    private void initRecyclerViews(View view){
+        mRefreshLayout = view.findViewById(R.id.swipeRefresh);
+        mTvMessage = view.findViewById(R.id.nodata);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -91,10 +97,10 @@ public class ChildFragment extends BaseFragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void getDataChild(){
+    public static void getDataChild(){
         mRefreshLayout.setRefreshing(true);
         APIService apiService = new APIService();
-        apiService.getChild("customer_child", getCustomerId(getActivity()), new Callback() {
+        apiService.getChild("customer_child", customerId, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mRefreshLayout.setRefreshing(false);
@@ -112,7 +118,6 @@ public class ChildFragment extends BaseFragment {
             @Override
             public void onFailure(Call call, Throwable t) {
                 mRefreshLayout.setRefreshing(false);
-                EasyToast.error(getActivity(), "Koneksi error");
             }
         });
     }

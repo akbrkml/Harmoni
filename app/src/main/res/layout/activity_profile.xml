@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/img_user"
                         android:layout_width="100dp"
                         android:layout_height="100dp"

@@ -1,4 +1,4 @@
-package com.harmoni.harmonikeluarga.ui.fragment;
+package com.harmoni.harmonikeluarga.ui.fragment.journalism;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -61,7 +61,7 @@ public class DetailJournalismFragment extends BaseFragment {
     private void bindData() {
         Glide.with(getActivity()).load(journalismItem.getContentImage()).into(mImageView);
         mTextTitle.setText(journalismItem.getContentTitle());
-        mTextAuthor.setText(journalismItem.getCategory());
+        mTextAuthor.setText(journalismItem.getCustomerName());
         mTextDesc.setText(journalismItem.getContentDesc());
     }
 

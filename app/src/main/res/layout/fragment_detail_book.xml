@@ -1,0 +1,314 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.library.DetailBookFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@id/title"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:text="PIECES OF LIGHT"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:background="@color/new_gray"
+                android:layout_height="1dp"
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:layout_above="@+id/g"
+                android:layout_below="@id/title"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:id="@+id/img"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="0.4"
+                    android:layout_width="220dp" />
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:layout_width="match_parent">
+
+                    <TextView
+                        android:id="@+id/tag1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Penulis  " />
+
+                    <TextView
+                        android:id="@+id/space1"
+                        android:layout_alignTop="@+id/tag1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/tag1"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/penulis"
+                        android:layout_alignTop="@+id/tag1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_toRightOf="@+id/space1"
+                        android:layout_width="wrap_content"
+                        android:text="Ryan N.R."
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_alignTop="@+id/penerbit"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Penerbit" />
+
+                    <TextView
+                        android:layout_alignLeft="@+id/space1"
+                        android:layout_alignTop="@+id/penerbit"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/penerbit"
+                        android:layout_alignLeft="@+id/penulis"
+                        android:layout_below="@+id/penulis"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Pustaka Media"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_alignTop="@+id/tahun"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Tahun" />
+
+                    <TextView
+                        android:layout_alignLeft="@+id/space1"
+                        android:layout_alignTop="@+id/tahun"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/tahun"
+                        android:layout_alignLeft="@+id/penulis"
+                        android:layout_below="@+id/penerbit"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="2015"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_alignTop="@+id/bahasa"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Bahasa" />
+
+                    <TextView
+                        android:layout_alignLeft="@+id/space1"
+                        android:layout_alignTop="@+id/bahasa"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/bahasa"
+                        android:layout_alignLeft="@+id/penulis"
+                        android:layout_below="@+id/tahun"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Indonesia"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_alignTop="@+id/halaman"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Halaman" />
+
+                    <TextView
+                        android:layout_alignLeft="@+id/space1"
+                        android:layout_alignTop="@+id/halaman"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/halaman"
+                        android:layout_alignLeft="@+id/penulis"
+                        android:layout_below="@+id/bahasa"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="46"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_alignTop="@+id/isbn"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="ISBN" />
+
+                    <TextView
+                        android:layout_alignLeft="@+id/space1"
+                        android:layout_alignTop="@+id/isbn"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/isbn"
+                        android:layout_alignLeft="@+id/penulis"
+                        android:layout_below="@+id/halaman"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="9879879789780"
+                        android:textColor="#000000"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:layout_alignTop="@+id/category"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Category" />
+
+                    <TextView
+                        android:layout_alignLeft="@+id/space1"
+                        android:layout_alignTop="@+id/category"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/category"
+                        android:layout_alignLeft="@+id/penulis"
+                        android:layout_below="@+id/isbn"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:text="Buku Parenting"
+                        android:textColor="#000000" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:background="@color/new_gray"
+                android:layout_height="1dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:id="@+id/desc"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/lorem" />
+
+            <View
+                android:background="@color/new_gray"
+                android:layout_height="1dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:id="@+id/download_tag"
+                android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_width="wrap_content"
+                android:text="DOWNLOAD"
+                android:textColor="@color/new_green"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:id="@+id/download_bg"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:visibility="gone">
+
+                <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:id="@+id/progress"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+
+                <TextView
+                    android:id="@+id/progress_text"
+                    android:layout_below="@+id/progress"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/download_sample"
+                    android:background="@color/new_green"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:text="SAMPLE BOOK"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/download_full"
+                    android:background="@color/new_green"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:text="FULL BOOK"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</FrameLayout>
