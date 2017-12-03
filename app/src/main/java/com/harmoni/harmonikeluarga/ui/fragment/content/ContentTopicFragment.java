@@ -102,7 +102,7 @@ public class ContentTopicFragment extends BaseFragment {
                 String dataContent = new Gson().toJson(item, ContentDetailFragment.class);
                 bundle.putString("data_content", dataContent);
                 newFragment.setArguments(bundle);
-                fm.beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack("tag").commit();
+//                fm.beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack("tag").commit();
             }
         });
         mRecyclerView.setAdapter(mAdapter);

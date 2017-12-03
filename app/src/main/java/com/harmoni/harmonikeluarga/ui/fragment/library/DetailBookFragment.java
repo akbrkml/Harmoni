@@ -183,7 +183,36 @@ public class DetailBookFragment extends Fragment {
 
     @OnClick(R.id.download_sample)
     public void downloadSample(){
+        APIInterfaces apiInterface;
 
+        apiInterface = APIClient.builder().create(APIInterfaces.class);
+
+        apiInterface.downloadFile(booksItem.getBookSampleFile()).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Download", "server contacted and has file");
+
+                    new AsyncTask<Void, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(Void... voids) {
+                            boolean writtenToDisk = writeResponseBodyToDisk(response.body());
+
+                            Log.d("Download", "file download was a success? " + writtenToDisk);
+                            return null;
+                        }
+                    }.execute();
+                }
+                else {
+                    Log.d("Download", "server contact failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
 }
