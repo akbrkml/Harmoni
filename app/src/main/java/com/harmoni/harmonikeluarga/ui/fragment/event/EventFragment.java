@@ -26,6 +26,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.harmoni.harmonikeluarga.util.Constant.getCustomerId;
+
 /**
  * A simple {@link Fragment} subclass.
  */

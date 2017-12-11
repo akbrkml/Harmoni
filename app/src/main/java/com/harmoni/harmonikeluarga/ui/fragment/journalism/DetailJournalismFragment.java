@@ -16,7 +16,6 @@ import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 public class DetailJournalismFragment extends BaseFragment {

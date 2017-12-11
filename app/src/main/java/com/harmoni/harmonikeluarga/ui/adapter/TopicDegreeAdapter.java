@@ -26,69 +26,70 @@ import butterknife.ButterKnife;
 
 public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.TopicDegreeHolder> {
 
-    private ArrayList<DataContentItem> mDataContentItems;
+    private ArrayList<DataTopicItem> mDataTopicItems;
     private Context context;
     private OnItemClickListener listener;
 
     public TopicDegreeAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
-        mDataContentItems = new ArrayList<>();
+        mDataTopicItems = new ArrayList<>();
     }
 
     public interface OnItemClickListener {
-        void onItemClick(DataContentItem item);
+        void onItemClick(DataTopicItem item);
     }
 
-    public void setDataAdapter(List<DataContentItem> contentItems) {
+    public void setDataAdapter(List<DataTopicItem> topicItems) {
 //        if (contentItems == null || contentItems.size() == 0)
 //            return;
 //        if (mDataContentItems != null && mDataContentItems.size() > 0)
 //            this.mDataContentItems.clear();
-        this.mDataContentItems.addAll(contentItems);
+        this.mDataTopicItems.addAll(topicItems);
         notifyDataSetChanged();
     }
 
-    public List<DataContentItem> getDataAdapter() {
-        return mDataContentItems;
+    public List<DataTopicItem> getDataAdapter() {
+        return mDataTopicItems;
     }
 
     @Override
     public TopicDegreeAdapter.TopicDegreeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_content, parent, false);
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.item_topic, parent, false);
         return new TopicDegreeHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TopicDegreeAdapter.TopicDegreeHolder holder, int position) {
-        DataContentItem item = mDataContentItems.get(position);
+        DataTopicItem item = mDataTopicItems.get(position);
 
-        Glide.with(context)
-                .load(item.getContentImage())
-                .into(holder.mImageContent);
-        holder.mTitleContent.setText(item.getContentTitle());
-        holder.mTextDesc.setText(Html.fromHtml(item.getContentDesc()));
-        holder.mTextDate.setText(item.getContentCreateDate());
+//        Glide.with(context)
+//                .load(item.getContentImage())
+//                .into(holder.mImageContent);
+//        holder.mTitleContent.setText(item.getContentTitle());
+//        holder.mTextDesc.setText(Html.fromHtml(item.getContentDesc()));
+//        holder.mTextDate.setText(item.getContentCreateDate());
+        holder.mTitleText.setText(item.getTopicName());
     }
 
     @Override
     public int getItemCount() {
-        return mDataContentItems != null ? mDataContentItems.size() : 0;
+        return mDataTopicItems != null ? mDataTopicItems.size() : 0;
     }
 
     public class TopicDegreeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.img)
-        ImageView mImageContent;
-        @BindView(R.id.title)
-        TextView mTitleContent;
-        @BindView(R.id.desc)
-        TextView mTextDesc;
-        @BindView(R.id.date)
-        TextView mTextDate;
-        @BindView(R.id.options)
-        TextView mOptions;
+//        @BindView(R.id.img)
+//        ImageView mImageContent;
+        @BindView(R.id.text)
+        TextView mTitleText;
+//        @BindView(R.id.desc)
+//        TextView mTextDesc;
+//        @BindView(R.id.date)
+//        TextView mTextDate;
+//        @BindView(R.id.options)
+//        TextView mOptions;
 
         public TopicDegreeHolder(View itemView) {
             super(itemView);
@@ -99,7 +100,7 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            DataContentItem item = mDataContentItems.get(position);
+            DataTopicItem item = mDataTopicItems.get(position);
             listener.onItemClick(item);
         }
     }

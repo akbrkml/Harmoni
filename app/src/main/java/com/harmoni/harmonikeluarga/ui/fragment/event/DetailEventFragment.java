@@ -15,12 +15,20 @@ import com.google.gson.Gson;
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.DataEventItem;
 import com.harmoni.harmonikeluarga.model.DataJournalismItem;
+import com.harmoni.harmonikeluarga.model.User;
+import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.profile.ProfileFragment;
+import com.medialablk.easytoast.EasyToast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.harmoni.harmonikeluarga.util.Constant.getCustomerId;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +61,10 @@ public class DetailEventFragment extends BaseFragment {
         addFragment();
 
         getArgument();
+
+        if (eventItem.isWasJoin()){
+            mButtonJoin.setText("Add Post");
+        }
 
         return view;
     }
@@ -120,7 +132,29 @@ public class DetailEventFragment extends BaseFragment {
 
     @OnClick(R.id.bt_join)
     public void goJoin(){
-        fm.beginTransaction().replace(R.id.content_frame, new AddPostFragment()).commit();
+
+        if (mButtonJoin.getText().equals("Add Post")){
+            fm.beginTransaction().replace(R.id.content_frame, new AddPostFragment()).commit();
+        } else {
+            APIService apiService = new APIService();
+            apiService.addJoin("join_event", eventItem.getEventId(), getCustomerId(getActivity()), new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+                    User user = (User) response.body();
+                    if (user != null){
+                        if (user.isStatus()){
+                            EasyToast.info(getActivity(), user.getText());
+                            mButtonJoin.setText("Add Post");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+
+                }
+            });
+        }
     }
 
     @Override

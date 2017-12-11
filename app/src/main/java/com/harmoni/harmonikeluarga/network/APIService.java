@@ -64,6 +64,10 @@ public class APIService {
         apiInterface.addTopics(act, customerId, topicId).enqueue(callback);
     }
 
+    public void addJournalism(String act, String customerId, String contentDesc, String contentName, Callback callback){
+        apiInterface.addJournalism(act, customerId, contentDesc, contentName).enqueue(callback);
+    }
+
     public void deleteChild(String act, String childId, Callback callback){
         apiInterface.deleteChild(act, childId).enqueue(callback);
     }
@@ -76,8 +80,16 @@ public class APIService {
         apiInterface.getListConsultation(act, customerId, page).enqueue(callback);
     }
 
+    public void addJoin(String act, String eventId, String customerId, Callback callback){
+        apiInterface.addJoin(act, eventId, customerId).enqueue(callback);
+    }
+
     public void getListEvent(String act, Callback callback){
         apiInterface.getListEvent(act).enqueue(callback);
+    }
+
+    public void getListEventCustomer(String act, String customerId, Callback callback){
+        apiInterface.getListEventCustomer(act, customerId).enqueue(callback);
     }
 
     public void downloadFile(String url, Callback callback){

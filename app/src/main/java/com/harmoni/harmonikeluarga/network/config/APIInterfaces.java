@@ -121,6 +121,13 @@ public interface APIInterfaces {
             @Field("act") String act
     );
 
+    @FormUrlEncoded
+    @POST("APIevent.php")
+    Call<EventJounalism> getListEventCustomer(
+            @Field("act") String act,
+            @Field("customerId") String customerId
+    );
+
     @Streaming
     @GET
     Call<ResponseBody> downloadFile(@Url String fileUrl);
@@ -173,6 +180,23 @@ public interface APIInterfaces {
             @Field("childName") String childName,
             @Field("customerId") String customerId,
             @Field("childNumber") String childNumber
+    );
+
+    @FormUrlEncoded
+    @POST("APIevent.php")
+    Call<User> addJoin(
+            @Field("act") String act,
+            @Field("eventId") String eventId,
+            @Field("customerId") String customerId
+    );
+
+    @FormUrlEncoded
+    @POST("APIcontent.php")
+    Call<EventJounalism> addJournalism(
+            @Field("act") String act,
+            @Field("customerId") String customerId,
+            @Field("contentDesc") String contentDesc,
+            @Field("contentName") String contentName
     );
 
     @FormUrlEncoded

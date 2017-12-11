@@ -3,6 +3,7 @@ package com.harmoni.harmonikeluarga.ui.fragment.content;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,7 @@ public class ContentDetailFragment extends BaseFragment {
     private void bindData() {
         Glide.with(getActivity()).load(topicItem.getContentImage()).into(mImageView);
         mTextTitle.setText(topicItem.getContentTitle());
-        mTextDesc.setText(topicItem.getContentDesc());
+        mTextDesc.setText(Html.fromHtml(topicItem.getContentDesc()));
     }
 
     @Override

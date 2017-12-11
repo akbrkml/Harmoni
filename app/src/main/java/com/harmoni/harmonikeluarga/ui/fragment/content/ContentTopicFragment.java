@@ -18,6 +18,7 @@ import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.ContentChild;
 import com.harmoni.harmonikeluarga.model.DataChildItem;
 import com.harmoni.harmonikeluarga.model.DataContentItem;
+import com.harmoni.harmonikeluarga.model.DataTopicItem;
 import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.ui.adapter.TopicDegreeAdapter;
 import com.harmoni.harmonikeluarga.ui.base.BaseFragment;
@@ -47,7 +48,6 @@ public class ContentTopicFragment extends BaseFragment {
 
     private TopicDegreeAdapter mAdapter;
     private DataChildItem childItem;
-    private List<DataContentItem> contentItems;
 
     public static ContentTopicFragment newInstance() {
         return new ContentTopicFragment();
@@ -95,14 +95,14 @@ public class ContentTopicFragment extends BaseFragment {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new TopicDegreeAdapter(getActivity(), new TopicDegreeAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(DataContentItem item) {
+            public void onItemClick(DataTopicItem item) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                ContentDetailFragment newFragment = new ContentDetailFragment();
+                TopicListFragment newFragment = new TopicListFragment();
                 Bundle bundle = new Bundle();
-                String dataContent = new Gson().toJson(item, ContentDetailFragment.class);
+                String dataContent = new Gson().toJson(item, DataTopicItem.class);
                 bundle.putString("data_content", dataContent);
                 newFragment.setArguments(bundle);
-//                fm.beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack("tag").commit();
+                fm.beginTransaction().replace(R.id.content_frame, newFragment).addToBackStack("tag").commit();
             }
         });
         mRecyclerView.setAdapter(mAdapter);
@@ -118,12 +118,7 @@ public class ContentTopicFragment extends BaseFragment {
                 ContentChild content = (ContentChild) response.body();
 
                 if (content != null) {
-                    contentItems = new ArrayList<>();
-                    int size = content.getDataTopic().size();
-                    for (int i = 0; i < size; i++) {
-//                        contentItems.add(new DataContentItem(content.getDataTopic().get(0).getDataContent()));
-                        mAdapter.setDataAdapter(content.getDataTopic().get(i).getDataContent());
-                    }
+                    mAdapter.setDataAdapter(content.getDataTopic());
                 }
             }
 

@@ -18,8 +18,6 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.DataBookItem;
-import com.harmoni.harmonikeluarga.model.DataJournalismItem;
-import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.network.config.APIClient;
 import com.harmoni.harmonikeluarga.network.config.APIInterfaces;
 
@@ -32,11 +30,12 @@ import java.io.OutputStream;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import info.hoang8f.widget.FButton;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.harmoni.harmonikeluarga.util.Constant.BASE_URL_DOC;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -102,7 +101,7 @@ public class DetailBookFragment extends Fragment {
 
         apiInterface = APIClient.builder().create(APIInterfaces.class);
 
-        apiInterface.downloadFile(booksItem.getBookFullFile()).enqueue(new Callback<ResponseBody>() {
+        apiInterface.downloadFile(BASE_URL_DOC + booksItem.getBookFullFile()).enqueue(new Callback<ResponseBody>() {
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
@@ -112,7 +111,7 @@ public class DetailBookFragment extends Fragment {
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            boolean writtenToDisk = writeResponseBodyToDisk(response.body());
+                            boolean writtenToDisk = writeResponseBodyToDisk(response.body(), booksItem.getBookFullFile());
 
                             Log.d("Download", "file download was a success? " + writtenToDisk);
                             return null;
@@ -131,10 +130,9 @@ public class DetailBookFragment extends Fragment {
         });
     }
 
-    private boolean writeResponseBodyToDisk(ResponseBody body) {
+    private boolean writeResponseBodyToDisk(ResponseBody body, String fileName) {
         try {
-            // todo change the file location/name according to your needs
-            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "Future Studio Icon.png");
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
 
             InputStream inputStream = null;
             OutputStream outputStream = null;
@@ -187,7 +185,8 @@ public class DetailBookFragment extends Fragment {
 
         apiInterface = APIClient.builder().create(APIInterfaces.class);
 
-        apiInterface.downloadFile(booksItem.getBookSampleFile()).enqueue(new Callback<ResponseBody>() {
+        apiInterface.downloadFile(BASE_URL_DOC + booksItem.getBookSampleFile()).enqueue(new Callback<ResponseBody>() {
+            @SuppressLint("StaticFieldLeak")
             @Override
             public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
@@ -196,7 +195,7 @@ public class DetailBookFragment extends Fragment {
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            boolean writtenToDisk = writeResponseBodyToDisk(response.body());
+                            boolean writtenToDisk = writeResponseBodyToDisk(response.body(), booksItem.getBookSampleFile());
 
                             Log.d("Download", "file download was a success? " + writtenToDisk);
                             return null;
@@ -214,5 +213,4 @@ public class DetailBookFragment extends Fragment {
             }
         });
     }
-
 }
