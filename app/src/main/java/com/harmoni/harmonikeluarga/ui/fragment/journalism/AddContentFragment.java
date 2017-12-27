@@ -51,8 +51,7 @@ public class AddContentFragment extends Fragment {
     @BindView(R.id.imageName)TextView mImageName;
     @BindView(R.id.videoName)TextView mVideoName;
 
-    private String title;
-    private String desc;
+    private String title, desc, image, video;
 
     private ProgressDialog progressDialog;
     private PermissionHelper permissionHelper;
@@ -84,6 +83,8 @@ public class AddContentFragment extends Fragment {
     private void getData(){
         title = mInputTitle.getText().toString();
         desc = mInputDesc.getText().toString();
+        image = mImageName.getText().toString();
+        video = mVideoName.getText().toString();
     }
 
     private boolean isValidateForm(){
@@ -91,7 +92,7 @@ public class AddContentFragment extends Fragment {
 
         getData();
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(desc)) {
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(desc) || TextUtils.isEmpty(image) || TextUtils.isEmpty(video)) {
             customInfoDialog(getActivity(), "Silahkan lengkapi form terlebih dahulu");
             result = false;
         }
@@ -176,7 +177,8 @@ public class AddContentFragment extends Fragment {
 
     @OnClick(R.id.bt_kirim)
     public void send(){
-
+        getData();
+        addNewJournalism(desc, title);
     }
 
     private void launchCamera() {
