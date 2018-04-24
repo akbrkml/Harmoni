@@ -35,6 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.harmoni.harmonikeluarga.ui.fragment.profile.ChildFragment.child;
 import static com.harmoni.harmonikeluarga.ui.fragment.profile.ChildFragment.getDataChild;
 import static com.harmoni.harmonikeluarga.util.Constant.getCustomerId;
 import static com.harmoni.harmonikeluarga.util.DialogUtils.customInfoDialog;
@@ -143,10 +144,15 @@ public class AddChildFragment extends DialogFragment
 
     @OnClick(R.id.btOk)
     public void doSave(){
-        addChild();
+        int jumlahAnak = child.getDataChild() != null ? child.getDataChild().size():0;
+        if (jumlahAnak == 0 || jumlahAnak > 0){
+            jumlahAnak += 1;
+        }
+//        EasyToast.info(getActivity(), String.valueOf(jumlahAnak));
+        addChild(String.valueOf(jumlahAnak));
     }
 
-    private void addChild(){
+    private void addChild(String childNumber){
         getData();
 
         if (mSpinnerDegree.getSelectedItem().toString().equals("Paud")){
@@ -169,7 +175,7 @@ public class AddChildFragment extends DialogFragment
         showProgress();
 
         APIService apiService = new APIService();
-        apiService.addChild("add_child", degreeSelectedId, "", mSpinnerGender.getSelectedItem().toString(), birth, name, getCustomerId(getActivity()), "", new Callback() {
+        apiService.addChild("add_child", degreeSelectedId, "", mSpinnerGender.getSelectedItem().toString(), birth, name, getCustomerId(getActivity()), childNumber, new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 hideProgress();

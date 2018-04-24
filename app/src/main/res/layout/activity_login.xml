@@ -63,7 +63,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="30dp"
-                android:text="LOGIN"
+                android:text="MASUK"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:gravity="right|end"
-                android:text="Lupa Password !"
+                android:text="Lupa Kata Sandi !"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
 

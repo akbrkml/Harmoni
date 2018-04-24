@@ -1,5 +1,6 @@
 package com.harmoni.harmonikeluarga.ui.activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,7 +12,9 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -104,12 +107,17 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.show();
     }
 
+    @OnClick(R.id.btLogin)
+    public void doLogin(){
+        LoginActivity.start(RegisterActivity.this);
+        RegisterActivity.this.finish();
+    }
+
     @OnClick(R.id.btRegister)
     public void doRegister(){
         getData();
 
         DeviceName.with(this).request(new DeviceName.Callback() {
-
             @Override public void onFinished(DeviceName.DeviceInfo info, Exception error) {
                 manufacturer = info.manufacturer;  // "Samsung"
                 String nama = info.marketName;            // "Galaxy S7 Edge"
@@ -215,10 +223,9 @@ public class RegisterActivity extends AppCompatActivity {
                         User user = (User) response.body();
                         if (user != null){
                             if (user.isStatus()){
-                                onSuccessRegister(RegisterActivity.this, USER_SESSION, user);
-                                MainActivity.start(RegisterActivity.this);
+                                LoginActivity.start(RegisterActivity.this);
                                 RegisterActivity.this.finish();
-                                EasyToast.info(getApplicationContext(), "Welcome " + user.getDataUser().getCustomerName());
+                                EasyToast.success(getApplicationContext(), "Registrasi berhasil. Login terlebih dahulu.");
                             } else {
                                 customInfoDialog(RegisterActivity.this, user.getText());
                             }
@@ -230,6 +237,28 @@ public class RegisterActivity extends AppCompatActivity {
                         hideProgress();
                     }
                 });
+    }
+
+    private void customInfoDialog(final Context context, String message){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.alert_info);
+
+        // set the custom dialog components - text and button
+        TextView text = dialog.findViewById(R.id.tvKet);
+        text.setText(message);
+
+        Button mButtonOk = dialog.findViewById(R.id.btOk);
+
+        mButtonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.start(RegisterActivity.this);
+                RegisterActivity.this.finish();
+            }
+        });
+
+        dialog.show();
     }
 
     public void alertProvince(View view){
@@ -281,9 +310,4 @@ public class RegisterActivity extends AppCompatActivity {
         });
         alert.show();
     }
-
-    private void onSuccessRegister(Context context, String key, User user){
-        SessionManager.putUser(context, key, user);
-    }
-
 }

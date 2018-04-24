@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DataContentItem{
 
-	private List<DataContentItem> contentItems;
+//	private List<DataContentItem> contentItems;
 
 	@SerializedName("content_reject_reason")
 	private String contentRejectReason;
@@ -59,9 +59,13 @@ public class DataContentItem{
 	@SerializedName("content_image")
 	private String contentImage;
 
-	public DataContentItem(List<DataContentItem> list) {
-		this.contentItems = list;
-	}
+	@SerializedName("contentId")
+	private String contentID;
+
+
+//	public DataContentItem(List<DataContentItem> list) {
+//		this.contentItems = list;
+//	}
 
 	public void setContentRejectReason(String contentRejectReason){
 		this.contentRejectReason = contentRejectReason;
@@ -85,6 +89,10 @@ public class DataContentItem{
 
 	public String getContentId(){
 		return contentId;
+	}
+
+	public String getContentID(){
+		return contentID;
 	}
 
 	public void setDegree(String degree){

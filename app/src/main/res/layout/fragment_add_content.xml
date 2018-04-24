@@ -66,8 +66,9 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/bt_default"
                     android:drawableRight="@drawable/ic_add"
-                    android:paddingLeft="10dp"
-                    android:text="add image"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="7dp"
+                    android:text="TAMBAH GAMBAR  "
                     android:textColor="@color/new_white" />
 
                 <TextView
@@ -75,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_etprofile"
-                    android:hint="IMAGE NAME"
+                    android:hint="NAMA GAMBAR"
                     android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="#000000" />
@@ -96,7 +97,8 @@
                     android:background="@drawable/bt_default"
                     android:drawableRight="@drawable/ic_add"
                     android:paddingLeft="10dp"
-                    android:text="add video"
+                    android:paddingRight="10dp"
+                    android:text="TAMBAH video      "
                     android:textColor="@color/new_white" />
 
                 <TextView
@@ -104,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_etprofile"
-                    android:hint="VIDEO NAME"
+                    android:hint="NAMA VIDEO"
                     android:maxLines="1"
                     android:padding="10dp"
                     android:textColor="#000000" />

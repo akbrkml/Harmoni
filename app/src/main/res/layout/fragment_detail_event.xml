@@ -122,8 +122,8 @@
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:background="@drawable/bt_default"
-        android:text="JOIN"
-        android:visibility="gone"
-        android:textColor="@color/new_white" />
+        android:text="POST"
+        android:textColor="@color/new_white"
+        android:visibility="visible" />
 </RelativeLayout>
 

@@ -4,6 +4,7 @@ package com.harmoni.harmonikeluarga.ui.fragment.event;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class DetailEventFragment extends BaseFragment {
     @BindView(R.id.bt_juara)Button mButtonJuara;
     @BindView(R.id.bt_join)Button mButtonJoin;
     @BindView(R.id.v_juara)View mViewJuara;
+    String idevent;
 
     private FragmentManager fm;
     public static DataEventItem eventItem;
@@ -55,17 +57,14 @@ public class DetailEventFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail_event, container, false);
-
         ButterKnife.bind(this, view);
-
         addFragment();
-
         getArgument();
-
-        if (eventItem.isWasJoin()){
+        if (!eventItem.isWasJoin()){
+            mButtonJoin.setText("Join");
+        } else {
             mButtonJoin.setText("Add Post");
         }
-
         return view;
     }
 
@@ -73,6 +72,8 @@ public class DetailEventFragment extends BaseFragment {
         String dataEvent = getArguments().getString("data_event");
         if (dataEvent != null) {
             eventItem = new Gson().fromJson(dataEvent, DataEventItem.class);
+            idevent = eventItem.getEventId();
+            Log.d("DataEventID",eventItem.getEventId());
         }
         Glide.with(getActivity()).load(eventItem.getEventImage()).into(mImageView);
 
@@ -132,9 +133,12 @@ public class DetailEventFragment extends BaseFragment {
 
     @OnClick(R.id.bt_join)
     public void goJoin(){
-
         if (mButtonJoin.getText().equals("Add Post")){
-            fm.beginTransaction().replace(R.id.content_frame, new AddPostFragment()).commit();
+            AddPostFragment newFragment = new AddPostFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("id_event", idevent);
+            newFragment.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.content_frame, newFragment).commit();
         } else {
             APIService apiService = new APIService();
             apiService.addJoin("join_event", eventItem.getEventId(), getCustomerId(getActivity()), new Callback() {

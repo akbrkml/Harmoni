@@ -68,7 +68,8 @@
                     android:background="@drawable/bt_default"
                     android:drawableRight="@drawable/ic_add"
                     android:paddingLeft="10dp"
-                    android:text="add image"
+                    android:paddingRight="8dp"
+                    android:text="add image  "
                     android:textColor="@color/new_white" />
 
                 <TextView
@@ -98,7 +99,8 @@
                     android:background="@drawable/bt_default"
                     android:drawableRight="@drawable/ic_add"
                     android:paddingLeft="10dp"
-                    android:text="add audio"
+                    android:paddingRight="8dp"
+                    android:text="add audio  "
                     android:textColor="@color/new_white" />
 
                 <TextView
@@ -128,7 +130,8 @@
                     android:background="@drawable/bt_default"
                     android:drawableRight="@drawable/ic_add"
                     android:paddingLeft="10dp"
-                    android:text="add video"
+                    android:paddingRight="8dp"
+                    android:text="add video  "
                     android:textColor="@color/new_white" />
 
                 <TextView

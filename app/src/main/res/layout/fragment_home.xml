@@ -100,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/img_events"
+                    android:src="@drawable/img_jurnal"
                     android:contentDescription="menu event"/>
 
                 <TextView

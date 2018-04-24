@@ -295,7 +295,7 @@
                     android:layout_weight="0.5"
                     android:layout_width="match_parent"
                     android:padding="10dp"
-                    android:text="SAMPLE BOOK"
+                    android:text="CONTOH BUKU"
                     android:textColor="#ffffff" />
 
                 <Button
@@ -305,7 +305,7 @@
                     android:layout_weight="0.5"
                     android:layout_width="match_parent"
                     android:padding="10dp"
-                    android:text="FULL BOOK"
+                    android:text="BUKU LENGKAP"
                     android:textColor="#ffffff" />
             </LinearLayout>
         </LinearLayout>

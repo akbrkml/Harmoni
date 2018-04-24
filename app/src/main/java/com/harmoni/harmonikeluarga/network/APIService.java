@@ -3,6 +3,10 @@ package com.harmoni.harmonikeluarga.network;
 import com.harmoni.harmonikeluarga.network.config.APIClient;
 import com.harmoni.harmonikeluarga.network.config.APIInterfaces;
 
+import java.io.File;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Callback;
 import retrofit2.http.Field;
 
@@ -64,10 +68,6 @@ public class APIService {
         apiInterface.addTopics(act, customerId, topicId).enqueue(callback);
     }
 
-    public void addJournalism(String act, String customerId, String contentDesc, String contentName, Callback callback){
-        apiInterface.addJournalism(act, customerId, contentDesc, contentName).enqueue(callback);
-    }
-
     public void deleteChild(String act, String childId, Callback callback){
         apiInterface.deleteChild(act, childId).enqueue(callback);
     }
@@ -76,20 +76,16 @@ public class APIService {
         apiInterface.getListByDegree(act, degreeId, customerId).enqueue(callback);
     }
 
+    public void getListFavorite(String act, String customerId, Callback callback){
+        apiInterface.getListFavorite(act, customerId).enqueue(callback);
+    }
+
     public void getListConsultation(String act, String customerId, String page, Callback callback){
         apiInterface.getListConsultation(act, customerId, page).enqueue(callback);
     }
 
-    public void addJoin(String act, String eventId, String customerId, Callback callback){
-        apiInterface.addJoin(act, eventId, customerId).enqueue(callback);
-    }
-
-    public void getListEvent(String act, Callback callback){
-        apiInterface.getListEvent(act).enqueue(callback);
-    }
-
-    public void getListEventCustomer(String act, String customerId, Callback callback){
-        apiInterface.getListEventCustomer(act, customerId).enqueue(callback);
+    public void getListEvent(String act, String customerId, Callback callback){
+        apiInterface.getListEvent(act, customerId).enqueue(callback);
     }
 
     public void downloadFile(String url, Callback callback){
@@ -134,5 +130,33 @@ public class APIService {
                          String childNumber,
                          Callback callback){
         apiInterface.addChilds(act, degreeId, childId, childGender, childBirth, childName, customerId, childNumber).enqueue(callback);
+    }
+
+    public void addFavorite(String act, String customerId, String contentId, Callback callback){
+        apiInterface.addFavorite(act,customerId,contentId).enqueue(callback);
+    }
+
+    public void addContent(String act, String customerId, String contentDesc, String contentName, Callback callback){
+        apiInterface.addContent(act,customerId,contentDesc,contentName).enqueue(callback);
+    }
+
+    public void addPost(String act, String eventId, String customerId, String title, String desc, Callback callback){
+        apiInterface.addPost(act,eventId,customerId,title,desc).enqueue(callback);
+    }
+
+    public void uploadFile(RequestBody act, RequestBody emdId,  RequestBody type, MultipartBody.Part file, Callback callback){
+        apiInterface.uploadFile(act,emdId,type,file).enqueue(callback);
+    }
+
+    public void uploadFileContent(RequestBody act, RequestBody contentId,  RequestBody type, MultipartBody.Part file, Callback callback){
+        apiInterface.uploadFileContent(act,contentId,type,file).enqueue(callback);
+    }
+
+    public void updatePhoto(RequestBody act, RequestBody customerId, MultipartBody.Part file, Callback callback){
+        apiInterface.updatePhoto(act,customerId,file).enqueue(callback);
+    }
+
+    public void addJoin(String act, String eventId, String customerId, Callback callback){
+        apiInterface.addJoin(act, eventId, customerId).enqueue(callback);
     }
 }

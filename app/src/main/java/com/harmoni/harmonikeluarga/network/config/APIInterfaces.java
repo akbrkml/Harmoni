@@ -4,16 +4,24 @@ import com.harmoni.harmonikeluarga.model.Book;
 import com.harmoni.harmonikeluarga.model.Child;
 import com.harmoni.harmonikeluarga.model.Consultation;
 import com.harmoni.harmonikeluarga.model.ContentChild;
+import com.harmoni.harmonikeluarga.model.DataContentItem;
+import com.harmoni.harmonikeluarga.model.DataTopicItem;
 import com.harmoni.harmonikeluarga.model.EventJounalism;
 import com.harmoni.harmonikeluarga.model.Topic;
 import com.harmoni.harmonikeluarga.model.User;
 
+import java.io.File;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
@@ -76,6 +84,31 @@ public interface APIInterfaces {
     );
 
     @FormUrlEncoded
+    @POST("APIcontent.php")
+    Call<ContentChild> getListFavorite(
+            @Field("act") String act,
+            @Field("customerId") String customerId
+    );
+
+    @FormUrlEncoded
+    @POST("APIcontent.php")
+    Call<ContentChild> addFavorite(
+            @Field("act") String act,
+            @Field("customerId") String customerId,
+            @Field("contentId") String contentId
+    );
+
+    @FormUrlEncoded
+    @POST("APIcontent.php")
+    Call<DataContentItem> addContent(
+            @Field("act") String act,
+            @Field("customerId") String customerId,
+            @Field("contentDesc") String contentDesc,
+            @Field("contentName") String contentName
+    );
+
+
+    @FormUrlEncoded
     @POST("APIconsultation.php")
     Call<Consultation> getListConsultation(
             @Field("act") String act,
@@ -118,14 +151,18 @@ public interface APIInterfaces {
     @FormUrlEncoded
     @POST("APIevent.php")
     Call<EventJounalism> getListEvent(
-            @Field("act") String act
+            @Field("act") String act,
+            @Field("customerId") String customerId
     );
 
     @FormUrlEncoded
     @POST("APIevent.php")
-    Call<EventJounalism> getListEventCustomer(
+    Call<EventJounalism> addPost(
             @Field("act") String act,
-            @Field("customerId") String customerId
+            @Field("eventId") String eventId,
+            @Field("customerId") String customerId,
+            @Field("emTitle") String emTitle,
+            @Field("emDesc") String emDesc
     );
 
     @Streaming
@@ -144,6 +181,32 @@ public interface APIInterfaces {
     Call<EventJounalism> getListEventParticipantWinner(
             @Field("act") String act,
             @Field("eventId") String eventId
+    );
+
+    @Multipart
+    @POST("APIevent.php")
+    Call<EventJounalism> uploadFile(
+            @Part("act") RequestBody act,
+            @Part("emId") RequestBody emId,
+            @Part("type") RequestBody type,
+            @Part MultipartBody.Part file
+    );
+
+    @Multipart
+    @POST("APIcontent.php")
+    Call<EventJounalism> uploadFileContent(
+            @Part("act") RequestBody act,
+            @Part("contentId") RequestBody emId,
+            @Part("type") RequestBody type,
+            @Part MultipartBody.Part file
+    );
+
+    @Multipart
+    @POST("APIuser.php")
+    Call<User> updatePhoto(
+            @Part("act") RequestBody act,
+            @Part("customerId") RequestBody emId,
+            @Part MultipartBody.Part file
     );
 
     @FormUrlEncoded
@@ -183,23 +246,6 @@ public interface APIInterfaces {
     );
 
     @FormUrlEncoded
-    @POST("APIevent.php")
-    Call<User> addJoin(
-            @Field("act") String act,
-            @Field("eventId") String eventId,
-            @Field("customerId") String customerId
-    );
-
-    @FormUrlEncoded
-    @POST("APIcontent.php")
-    Call<EventJounalism> addJournalism(
-            @Field("act") String act,
-            @Field("customerId") String customerId,
-            @Field("contentDesc") String contentDesc,
-            @Field("contentName") String contentName
-    );
-
-    @FormUrlEncoded
     @POST("APIuser.php")
     Call<User> updateProfile(
             @Field("act") String act,
@@ -212,5 +258,11 @@ public interface APIInterfaces {
             @Field("city") String city
     );
 
-
+    @FormUrlEncoded
+    @POST("APIevent.php")
+    Call<User> addJoin(
+            @Field("act") String act,
+            @Field("eventId") String eventId,
+            @Field("customerId") String customerId
+    );
 }

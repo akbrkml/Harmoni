@@ -20,6 +20,9 @@ public class EventJounalism{
 	@SerializedName("status")
 	private boolean status;
 
+	@SerializedName("emId")
+	private String emId;
+
 	public void setDataEvent(List<DataEventItem> dataEvent){
 		this.dataEvent = dataEvent;
 	}
@@ -34,6 +37,10 @@ public class EventJounalism{
 
 	public String getText(){
 		return text;
+	}
+
+	public String getEmId(){
+		return emId;
 	}
 
 	public void setDataJournalism(List<DataJournalismItem> dataJournalism){

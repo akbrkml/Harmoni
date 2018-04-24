@@ -14,6 +14,8 @@ import android.view.MenuItem;
 
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.ui.base.BaseActivity;
+import com.harmoni.harmonikeluarga.ui.fragment.AboutFragment;
+import com.harmoni.harmonikeluarga.ui.fragment.FavoriteFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.event.EventFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.journalism.JournalismFragment;
 import com.harmoni.harmonikeluarga.ui.fragment.SettingFragment;
@@ -134,11 +136,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_kirimsaran) {
             add(SaranFragment.newInstance());
         } else if (id == R.id.nav_favorit) {
-
+            add(FavoriteFragment.newInstance());
         } else if (id == R.id.nav_pengaturan) {
             add(SettingFragment.newInstance());
         } else if (id == R.id.nav_tentang) {
-
+            add(AboutFragment.newInstance());
         } else if (id == R.id.nav_keluar) {
             customLogoutAppDialog(this, "Logout dari aplikasi?");
         }

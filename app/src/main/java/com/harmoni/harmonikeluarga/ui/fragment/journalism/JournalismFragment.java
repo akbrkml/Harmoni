@@ -110,7 +110,8 @@ public class JournalismFragment extends BaseFragment {
     @OnClick(R.id.add_journalism)
     public void addJournalism(){
         FragmentManager fm = getActivity().getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new AddContentFragment()).addToBackStack("tag").commit();
+        AddContentFragment addContentFragment = new AddContentFragment();
+        fm.beginTransaction().replace(R.id.content_frame, addContentFragment).addToBackStack("tag").commit();
     }
 
     @Override

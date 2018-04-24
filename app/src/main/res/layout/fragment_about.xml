@@ -1,0 +1,28 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.harmoni.harmonikeluarga.ui.fragment.AboutFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:text="HARMONI KELUARGA
+
+Perkembangan teknologi memudahkan setiap orang untuk mendapatkan informasi melalui gawai yang dimilikinya. Untuk memenuhi kebutuhan informasi tersebut, dibuatlah aplikasi Harmoni Keluarga.
+
+Aplikasi Harmoni Keluarga merupakan aplikasi yang ditujukan kepada para orang tua untuk mendapatkan ilmu dan informasi dalam mendampingi anak-anak mereka.
+
+Aplikasi ini dapat digunakan dengan mudah dan dimana saja. Sehingga orang tua dapat segera mencari tahu informasi yang dibutuhkan dengan cepat.
+
+Fitur aplikasi Harmoni Keluarga terdiri dari artikel, tips, saran dan berita terkait dengan pendidikan keluarga.
+Dalam fitur ini, orang tua juga dapat berkonsultasi langsung tentang pengasuhan dengan para ahli yang bergerak dibidangnya.
+
+Masyarakat umum juga dapat menjadi penyedia informasi melalui fitur Jurnalisme. Dalam fitur ini, siapa saja diizinkan untuk mengirimkan berita, informasi kegiatan dan tips setelah sebelumnya melalui proses verifikasi dari admin.
+
+Aplikasi Harmoni Keluarga juga dilengkapi dengan buku digital yang dapat memperkaya informasi keluarga tentang pengasuhan." />
+
+</FrameLayout>

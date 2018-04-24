@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:background="#b60e41"
                     android:padding="15dp"
-                    android:text="EVENT"
+                    android:text="AGENDA"
                     android:textColor="@color/new_white" />
 
                 <android.support.v7.widget.RecyclerView

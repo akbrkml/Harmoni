@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="15dp"
-            android:textColor="#ffffff"
             android:textSize="16sp"
             android:visibility="gone" />
     </RelativeLayout>

@@ -2,49 +2,53 @@ package com.harmoni.harmonikeluarga.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DataParticipantItem{
+/**
+ * Created by user on 12/3/2017.
+ */
 
-	@SerializedName("customer_name")
-	private String customerName;
+public class DataParticipantItem {
 
-	@SerializedName("customer_image")
-	private String customerImage;
+    @SerializedName("customer_name")
+    public String customerName;
 
-	@SerializedName("em_winner_title")
-	private String emWinnerTitle;
+    @SerializedName("customer_image")
+    public String customerImage;
 
-	@SerializedName("em_winner_desc")
-	private String emWinnerDesc;
+    @SerializedName("em_winner_title")
+    public String emWinnerTitle;
 
-	public void setCustomerName(String customerName){
-		this.customerName = customerName;
-	}
+    @SerializedName("em_winner_desc")
+    public String emWinnerDesc;
 
-	public String getCustomerName(){
-		return customerName;
-	}
+    public String getCustomerName() {
+        return customerName;
+    }
 
-	public void setCustomerImage(String customerImage){
-		this.customerImage = customerImage;
-	}
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
-	public String getCustomerImage(){
-		return customerImage;
-	}
+    public String getCustomerImage() {
+        return customerImage;
+    }
 
-	public String getEmWinnerTitle() {
-		return emWinnerTitle;
-	}
+    public void setCustomerImage(String customerImage) {
+        this.customerImage = customerImage;
+    }
 
-	public void setEmWinnerTitle(String emWinnerTitle) {
-		this.emWinnerTitle = emWinnerTitle;
-	}
+    public String getEmWinnerTitle() {
+        return emWinnerTitle;
+    }
 
-	public String getEmWinnerDesc() {
-		return emWinnerDesc;
-	}
+    public void setEmWinnerTitle(String emWinnerTitle) {
+        this.emWinnerTitle = emWinnerTitle;
+    }
 
-	public void setEmWinnerDesc(String emWinnerDesc) {
-		this.emWinnerDesc = emWinnerDesc;
-	}
+    public String getEmWinnerDesc() {
+        return emWinnerDesc;
+    }
+
+    public void setEmWinnerDesc(String emWinnerDesc) {
+        this.emWinnerDesc = emWinnerDesc;
+    }
 }

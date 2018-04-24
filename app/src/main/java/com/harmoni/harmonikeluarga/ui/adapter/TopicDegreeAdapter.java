@@ -26,70 +26,69 @@ import butterknife.ButterKnife;
 
 public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.TopicDegreeHolder> {
 
-    private ArrayList<DataTopicItem> mDataTopicItems;
+    private List<DataContentItem> mDataContentItems;
     private Context context;
     private OnItemClickListener listener;
 
     public TopicDegreeAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
-        mDataTopicItems = new ArrayList<>();
+        mDataContentItems = new ArrayList<>();
     }
 
     public interface OnItemClickListener {
-        void onItemClick(DataTopicItem item);
+        void onItemClick(DataContentItem item);
     }
 
-    public void setDataAdapter(List<DataTopicItem> topicItems) {
-//        if (contentItems == null || contentItems.size() == 0)
-//            return;
-//        if (mDataContentItems != null && mDataContentItems.size() > 0)
-//            this.mDataContentItems.clear();
-        this.mDataTopicItems.addAll(topicItems);
+    public void setDataAdapter(List<DataContentItem> contentItems) {
+        if (contentItems == null || contentItems.size() == 0)
+            return;
+        if (mDataContentItems != null && mDataContentItems.size() > 0)
+            this.mDataContentItems.clear();
+        this.mDataContentItems.addAll(contentItems);
         notifyDataSetChanged();
     }
 
-    public List<DataTopicItem> getDataAdapter() {
-        return mDataTopicItems;
+    public List<DataContentItem> getDataAdapter() {
+        return mDataContentItems;
     }
 
     @Override
     public TopicDegreeAdapter.TopicDegreeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_topic, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_content, parent, false);
         return new TopicDegreeHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TopicDegreeAdapter.TopicDegreeHolder holder, int position) {
-        DataTopicItem item = mDataTopicItems.get(position);
+        DataContentItem item = mDataContentItems.get(position);
 
-//        Glide.with(context)
-//                .load(item.getContentImage())
-//                .into(holder.mImageContent);
-//        holder.mTitleContent.setText(item.getContentTitle());
-//        holder.mTextDesc.setText(Html.fromHtml(item.getContentDesc()));
-//        holder.mTextDate.setText(item.getContentCreateDate());
-        holder.mTitleText.setText(item.getTopicName());
+        Glide.with(context)
+                .load(item.getContentImage())
+                .into(holder.mImageContent);
+        holder.mTitleContent.setText(item.getContentTitle());
+        holder.mTextDesc.setText(Html.fromHtml(item.getContentDesc()));
+        holder.mTextDate.setText(item.getContentCreateDate());
     }
 
     @Override
     public int getItemCount() {
-        return mDataTopicItems != null ? mDataTopicItems.size() : 0;
+        return mDataContentItems != null ? mDataContentItems.size() : 0;
     }
 
     public class TopicDegreeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-//        @BindView(R.id.img)
-//        ImageView mImageContent;
-        @BindView(R.id.text)
-        TextView mTitleText;
-//        @BindView(R.id.desc)
-//        TextView mTextDesc;
-//        @BindView(R.id.date)
-//        TextView mTextDate;
-//        @BindView(R.id.options)
-//        TextView mOptions;
+        @BindView(R.id.img)
+        ImageView mImageContent;
+        @BindView(R.id.title)
+        TextView mTitleContent;
+        @BindView(R.id.desc)
+        TextView mTextDesc;
+        @BindView(R.id.date)
+        TextView mTextDate;
+        @BindView(R.id.options)
+        TextView mOptions;
 
         public TopicDegreeHolder(View itemView) {
             super(itemView);
@@ -100,7 +99,7 @@ public class TopicDegreeAdapter extends RecyclerView.Adapter<TopicDegreeAdapter.
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            DataTopicItem item = mDataTopicItems.get(position);
+            DataContentItem item = mDataContentItems.get(position);
             listener.onItemClick(item);
         }
     }

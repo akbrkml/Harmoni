@@ -11,6 +11,9 @@ public class ContentChild{
 	@SerializedName("data_topic")
 	private List<DataTopicItem> dataTopic;
 
+	@SerializedName("data_content")
+	private List<DataContentItem> dataContent;
+
 	@SerializedName("status")
 	private boolean status;
 
@@ -36,5 +39,13 @@ public class ContentChild{
 
 	public boolean isStatus(){
 		return status;
+	}
+
+	public List<DataContentItem> getDataContent() {
+		return dataContent;
+	}
+
+	public void setDataContent(List<DataContentItem> dataContent) {
+		this.dataContent = dataContent;
 	}
 }

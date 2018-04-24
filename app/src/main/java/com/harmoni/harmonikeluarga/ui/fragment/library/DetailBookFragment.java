@@ -18,8 +18,11 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.harmoni.harmonikeluarga.R;
 import com.harmoni.harmonikeluarga.model.DataBookItem;
+import com.harmoni.harmonikeluarga.model.DataJournalismItem;
+import com.harmoni.harmonikeluarga.network.APIService;
 import com.harmoni.harmonikeluarga.network.config.APIClient;
 import com.harmoni.harmonikeluarga.network.config.APIInterfaces;
+import com.medialablk.easytoast.EasyToast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,12 +33,13 @@ import java.io.OutputStream;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import info.hoang8f.widget.FButton;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.harmoni.harmonikeluarga.util.Constant.BASE_URL_DOC;
+import static com.harmoni.harmonikeluarga.util.Constant.DOC_URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,6 +97,8 @@ public class DetailBookFragment extends Fragment {
         mTextCat.setText(booksItem.getCatName());
         mTextDesc.setText(Html.fromHtml(booksItem.getBookDesc()));
         Glide.with(getActivity()).load(booksItem.getBookImage()).into(mImageBook);
+        Log.d("Sample", booksItem.getBookSampleFile());
+        Log.d("Full", booksItem.getBookFullFile());
     }
 
     @OnClick(R.id.download_full)
@@ -101,22 +107,29 @@ public class DetailBookFragment extends Fragment {
 
         apiInterface = APIClient.builder().create(APIInterfaces.class);
 
-        apiInterface.downloadFile(BASE_URL_DOC + booksItem.getBookFullFile()).enqueue(new Callback<ResponseBody>() {
+        apiInterface.downloadFile(DOC_URL + booksItem.getBookFullFile()).enqueue(new Callback<ResponseBody>() {
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Log.d("Download", "server contacted and has file");
-
+                    final boolean[] writtenToDisk = new boolean[1];
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            boolean writtenToDisk = writeResponseBodyToDisk(response.body(), booksItem.getBookFullFile());
+                            writtenToDisk[0] = writeResponseBodyToDisk(response.body(), booksItem.getBookFullFile());
 
-                            Log.d("Download", "file download was a success? " + writtenToDisk);
+                            Log.d("Download", "file download was a success? " + writtenToDisk[0]);
+
                             return null;
                         }
                     }.execute();
+
+                    if (!writtenToDisk[0]){
+                        EasyToast.info(getActivity().getApplicationContext(), "Download berhasil");
+                    } else {
+                        EasyToast.error(getActivity().getApplicationContext(), "Download gagal");
+                    }
                 }
                 else {
                     Log.d("Download", "server contact failed");
@@ -130,9 +143,10 @@ public class DetailBookFragment extends Fragment {
         });
     }
 
-    private boolean writeResponseBodyToDisk(ResponseBody body, String fileName) {
+    private boolean writeResponseBodyToDisk(ResponseBody body, String name) {
         try {
-            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
+            // todo change the file location/name according to your needs
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + name);
 
             InputStream inputStream = null;
             OutputStream outputStream = null;
@@ -185,22 +199,27 @@ public class DetailBookFragment extends Fragment {
 
         apiInterface = APIClient.builder().create(APIInterfaces.class);
 
-        apiInterface.downloadFile(BASE_URL_DOC + booksItem.getBookSampleFile()).enqueue(new Callback<ResponseBody>() {
-            @SuppressLint("StaticFieldLeak")
+        apiInterface.downloadFile(DOC_URL + booksItem.getBookSampleFile()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, final Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Log.d("Download", "server contacted and has file");
-
+                    final boolean[] writtenToDisk = new boolean[1];
                     new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            boolean writtenToDisk = writeResponseBodyToDisk(response.body(), booksItem.getBookSampleFile());
+                            writtenToDisk[0] = writeResponseBodyToDisk(response.body(), booksItem.getBookSampleFile());
 
-                            Log.d("Download", "file download was a success? " + writtenToDisk);
+                            Log.d("Download", "file download was a success? " + writtenToDisk[0]);
+
                             return null;
                         }
                     }.execute();
+                    if (!writtenToDisk[0]){
+                        EasyToast.info(getActivity().getApplicationContext(), "Download berhasil");
+                    } else {
+                        EasyToast.error(getActivity().getApplicationContext(), "Download gagal");
+                    }
                 }
                 else {
                     Log.d("Download", "server contact failed");
@@ -213,4 +232,5 @@ public class DetailBookFragment extends Fragment {
             }
         });
     }
+
 }

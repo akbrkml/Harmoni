@@ -52,20 +52,15 @@ public class EventFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_journalism, container, false);
-
         ButterKnife.bind(this, view);
-
         initEventRecycler();
-
         getEvent();
-
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 getEvent();
             }
         });
-
         return view;
     }
 
@@ -91,7 +86,7 @@ public class EventFragment extends BaseFragment {
     private void getEvent(){
         mRefreshLayout.setRefreshing(true);
         APIService apiService = new APIService();
-        apiService.getListEvent("list_event", new Callback() {
+        apiService.getListEvent("list_event", getCustomerId(getActivity()), new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 mRefreshLayout.setRefreshing(false);
