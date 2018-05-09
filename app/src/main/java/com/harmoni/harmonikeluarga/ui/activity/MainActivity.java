@@ -135,9 +135,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             add(MainLibraryFragment.newInstance());
         } else if (id == R.id.nav_kirimsaran) {
             add(SaranFragment.newInstance());
-        } else if (id == R.id.nav_favorit) {
-            add(FavoriteFragment.newInstance());
-        } else if (id == R.id.nav_pengaturan) {
+        }
+//        else if (id == R.id.nav_favorit) {
+//            add(FavoriteFragment.newInstance());
+//        }
+        else if (id == R.id.nav_pengaturan) {
             add(SettingFragment.newInstance());
         } else if (id == R.id.nav_tentang) {
             add(AboutFragment.newInstance());
